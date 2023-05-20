@@ -13,6 +13,10 @@ END_VAR
 VAR
     rOutValue   : REAL;
 END_VAR
+
+rOutValue := rValue * EXPT(10,iDecNumber);
+rOutValue := TRUNC(rOutValue) / EXPT(10,iDecNumber);
+F_ROUNDREAL := rOutValue;
 ```
 
 ## Input Parameters
@@ -29,9 +33,10 @@ VAR
     MyValue : REAL := 3.14159;
     RoundedValue : REAL;
 END_VAR
-```
+
 
 RoundedValue := F_ROUNDREAL(MyValue, 2);  // Round MyValue to 2 decimal places
+```
 
 In this example, the MyValue variable represents the real number that you want to round. The F_ROUNDREAL function is then used to round MyValue to 2 decimal places. The result is stored in the RoundedValue variable.
 
