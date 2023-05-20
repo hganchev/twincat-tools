@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <POU Name="F_ROUNDLREAL" Id="{625e7ba7-48bd-4cac-b9d8-1117997efc5b}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION F_ROUNDLREAL : LREAL
+VAR_INPUT
+	rValue		: LREAL; // Input Value
+	iDecNumber	: INT; 	// Numbers after decimal point
+END_VAR
+VAR
+	rOutValue	: LREAL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[rOutValue := rValue * EXPT(10,iDecNumber);
+rOutValue := TRUNC(rOutValue) / EXPT(10,iDecNumber);
+F_ROUNDREAL := rOutValue;]]></ST>
+    </Implementation>
+    <LineIds Name="F_ROUNDLREAL">
+      <LineId Id="7" Count="0" />
+      <LineId Id="12" Count="0" />
+      <LineId Id="10" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>
