@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <POU Name="F_GETTIMESTAMP" Id="{9dd17d6a-0ac2-4820-8e12-49aeb4e7bd36}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION F_GETTIMESTAMP : STRING(255)
+VAR_INPUT
+	systemTime				: TIMESTRUCT;
+	strSeparatorDate		: STRING(1) := '_';	
+	strSeparatorTime		: STRING(1) := '_';			
+END_VAR
+VAR
+	stYear					: STRING;
+	stMonth					: STRING;
+	stDay					: STRING;
+	stHours					: STRING;
+	stMinutes				: STRING;
+	stSeconds				: STRING;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[stYear 		:= CONCAT(WORD_TO_STRING(systemTime.wYear), strSeparatorDate);
+stMonth		:= CONCAT(WORD_TO_STRING(systemTime.wMonth), strSeparatorDate);
+stDay 		:= CONCAT(WORD_TO_STRING(systemTime.wDay), strSeparatorDate);
+stHours 	:= CONCAT(WORD_TO_STRING(systemTime.wHour), strSeparatorTime);
+stMinutes 	:= CONCAT(WORD_TO_STRING(systemTime.wMinute), strSeparatorTime);
+stSeconds 	:= WORD_TO_STRING(systemTime.wSecond);
+F_GETTIMESTAMP := CONCAT(stYear,CONCAT(stMonth,CONCAT(stDay,CONCAT(stHours,CONCAT(stMinutes,stSeconds)))));]]></ST>
+    </Implementation>
+    <LineIds Name="F_GETTIMESTAMP">
+      <LineId Id="17" Count="4" />
+      <LineId Id="7" Count="0" />
+      <LineId Id="22" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>
