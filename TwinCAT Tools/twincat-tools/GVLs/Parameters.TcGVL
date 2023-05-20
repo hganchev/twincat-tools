@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <GVL Name="Parameters" Id="{40639f22-13c7-46f5-8e0c-e13e2a3433c2}" ParameterList="True">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL CONSTANT
+	sNewLineSymbol			: STRING(3) := '$0A'; 	// Control character new line, corresponds to '$L' and '$SN'
+	sLineBreakSymbol		: STRING(3) := '$0D';	// Control character line break, corresponds to '$R'
+	
+	// Export Array REAL data to text file parameters
+	iArrayREALSize						: INT := 255;
+	diByteMultiplierForExport			: DINT := 10; // This multiplies with array Size
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>
