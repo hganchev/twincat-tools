@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <POU Name="UnitTests" Id="{4c031c1b-3750-4044-bc97-31973c09b395}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM UnitTests
+VAR
+	fbTestRound		: Fb_TestRound;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[TcUnit.RUN();]]></ST>
+    </Implementation>
+    <LineIds Name="UnitTests">
+      <LineId Id="5" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

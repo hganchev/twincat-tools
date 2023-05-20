@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <POU Name="FB_TestRound" Id="{92000e0b-3a08-4346-91c0-8b471b1ff965}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_TestRound EXTENDS TcUnit.FB_TestSuite
+
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[testRoundReal();]]></ST>
+    </Implementation>
+    <Method Name="testRoundReal" Id="{972e2527-061b-4f8b-979d-4770a9b664a6}">
+      <Declaration><![CDATA[METHOD testRoundReal
+VAR
+	rValue 		: REAL := 1000.555555;
+	Actual		: REAL;
+	Expected  	: REAL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[TEST('testRoundReal');
+
+// Act
+Actual := F_ROUNDREAL(rValue, 2); 
+
+// Arrange
+Expected := 1000.55;
+
+// Assert
+AssertEquals(Expected := Expected, 
+			 Actual := Actual,
+			 Message := 'testRoundReal Failed');]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="FB_TestRound">
+      <LineId Id="9" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_TestRound.testRoundReal">
+      <LineId Id="16" Count="1" />
+      <LineId Id="12" Count="0" />
+      <LineId Id="5" Count="0" />
+      <LineId Id="10" Count="1" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="14" Count="0" />
+      <LineId Id="13" Count="0" />
+      <LineId Id="15" Count="0" />
+      <LineId Id="18" Count="1" />
+    </LineIds>
+  </POU>
+</TcPlcObject>
