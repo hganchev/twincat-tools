@@ -1,4 +1,4 @@
-# F_ROUNDREAL Function
+# Round Functions
 
 The `F_ROUNDREAL` function is a custom function in TwinCAT that allows you to round a real number to a specified number of decimal places.
 
