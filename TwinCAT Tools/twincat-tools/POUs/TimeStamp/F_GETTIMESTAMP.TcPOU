@@ -3,9 +3,9 @@
   <POU Name="F_GETTIMESTAMP" Id="{9dd17d6a-0ac2-4820-8e12-49aeb4e7bd36}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION F_GETTIMESTAMP : STRING(255)
 VAR_INPUT
-	systemTime				: TIMESTRUCT;
-	strSeparatorDate		: STRING(1) := '_';	
-	strSeparatorTime		: STRING(1) := '_';			
+	systemTime				: TIMESTRUCT;			// Using Tc2_Utilities to have the TIMESTRUCT
+	strSeparatorDate		: STRING(1) := '_';		// Separator between Year,Month,Day
+	strSeparatorTime		: STRING(1) := ':';		// Separator between Hours, Minutes, Seconds		
 END_VAR
 VAR
 	stYear					: STRING;

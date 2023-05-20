@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <POU Name="ExportRealDataToFile" Id="{7be8b053-fc64-4dc7-b6d9-9c2dbe13a8e2}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK ExportRealDataToFile
+VAR_INPUT
+	arrREALData				: ARRAY[0..Parameters.iArrayREALSize] OF REAL;
+	sFilePath				: STRING(255); // File Path
+	bUseTimeStamp 			: BOOL;
+	bRoundREALDataValues	: BOOL;
+	iRoundingDecIndex		: INT := 2; 
+	
+	bExport					: BOOL;
+END_VAR
+VAR_OUTPUT
+	bExportDone					: BOOL; // Trigger signal for ExportDone
+END_VAR
+VAR	
+	sInputFilePath			: STRING(255);
+	// TimeStamp
+	timeStamp				: STRING(255);
+	sFilePathPlusTimestamp	: STRING(255);
+	fbSysTime   			: FB_LocalSystemTime := ( bEnable := TRUE, dwCycle := 1 );
+	
+	// Export Data
+	fbExport 				: ExportArrayREALDataToTextFile;
+	
+	i						: INT;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[// get system time
+fbSysTime();
+
+// use time stamp to file name
+IF bUseTimeStamp THEN
+	// get time stamp
+	timeStamp := F_GETTIMESTAMP(fbSysTime.systemTime, '_', '_');
+	sFilePathPlusTimestamp := INSERT(sFilePath,CONCAT('_',timeStamp),FIND(sFilePath, '.txt') - 1);
+	sInputFilePath := sFilePathPlusTimestamp;
+ELSE
+	sInputFilePath := sFilePath;
+END_IF
+
+// round array data values
+IF bRoundREALDataValues THEN
+	FOR i := 0 TO Parameters.iArrayREALSize DO
+		arrREALData[i] := F_ROUNDREAL(arrREALData[i], iRoundingDecIndex);
+	END_FOR
+END_IF
+
+
+fbExport(
+	arrData:= arrREALData, 
+	bExecute:= bExport, 
+	bUseTimeStamp:= bUseTimeStamp, 
+	sFilePath:= sInputFilePath, 
+	bDone=> bExportDone);]]></ST>
+    </Implementation>
+    <LineIds Name="ExportRealDataToFile">
+      <LineId Id="40" Count="0" />
+      <LineId Id="37" Count="2" />
+      <LineId Id="21" Count="3" />
+      <LineId Id="56" Count="0" />
+      <LineId Id="25" Count="1" />
+      <LineId Id="17" Count="3" />
+      <LineId Id="47" Count="0" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="48" Count="0" />
+      <LineId Id="41" Count="0" />
+      <LineId Id="52" Count="0" />
+      <LineId Id="51" Count="0" />
+      <LineId Id="61" Count="4" />
+      <LineId Id="50" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <POU Name="ExportArrayREALDataToTextFile" Id="{e693916f-62db-4933-926c-161c1019abc0}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK ExportArrayREALDataToTextFile
+VAR_INPUT
+	arrData 				: ARRAY[0..Parameters.iArrayREALSize] OF REAL;
+	bExecute				: BOOL;
+	bUseTimeStamp			: BOOL;
+	sFilePath				: STRING(255) := 'C:\data.txt';
+END_VAR         			
+VAR_OUTPUT      			
+	bDone					: BOOL;
+END_VAR
+VAR
+	fileOpen				: FB_FileOpen;
+//	fileWrite				: FB_FilePuts;
+	fileWrite				: FB_FileWrite;
+	fileClose				: FB_FileClose;
+	                		
+	fileHandle				: UINT;
+	nSizeWritten			: UDINT;
+	
+	arrayDataByte			: ARRAY[0..iArrayByteSize] OF BYTE;
+	sData					: ARRAY[0..Parameters.iArrayREALSize] OF STRING(255);
+
+	i						: INT;
+	j						: INT;
+	k						: DINT;	// track of byte array
+END_VAR
+
+VAR CONSTANT
+	iArrayByteSize 			: INT := Parameters.diByteMultiplierForExport * Parameters.iArrayREALSize;
+END_VAR
+
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[bDone := FALSE;
+fileClose(bExecute := FALSE);
+
+// file write init
+fileWrite(tTimeout:= T#2S);
+
+IF bExecute	THEN	
+	// open file
+	fileOpen(sPathName := sFilePath, nMode := FOPEN_MODEWRITE,
+		 ePath := PATH_GENERIC, hFile => fileHandle, bExecute := TRUE);
+		 
+	// Clear data
+	MEMSET(ADR(arrayDataByte), 16#00, SIZEOF(arrayDataByte));
+	
+	k := 0;
+	// Prepare string data 
+	FOR i := 0 TO Parameters.iArrayREALSize DO
+		sData[i] := REAL_TO_STRING(arrData[i]);
+		IF i > 0 THEN
+			sData[i] := CONCAT(Parameters.sNewLineSymbol,sData[i]);
+		END_IF
+		// Convert to byte for every sData symbol
+		FOR j := 0 TO LEN(sData[i]) DO
+			MEMCPY(ADR(arrayDataByte[k]),ADR(sData[i][j]), 1);
+			k := k + 1;
+		END_FOR
+	END_FOR
+	
+	// Write Data
+	IF fileHandle <> 0 THEN
+		fileWrite(	hFile:= fileHandle, 
+					pWriteBuff:= ADR(arrayDataByte), 
+					cbWriteLen:= SIZEOF(arrayDataByte), 
+					bExecute := TRUE);
+	END_IF
+	
+	IF fileWrite.cbWrite > 0 THEN
+		bDone := TRUE;
+	END_IF
+ELSIF NOT bExecute THEN
+	IF NOT fileWrite.bBusy THEN
+		fileWrite(bExecute := FALSE);
+		fileOpen(bExecute := FALSE);
+		fileClose(hFile := fileHandle, bExecute := TRUE);
+	END_IF
+END_IF	
+
+]]></ST>
+    </Implementation>
+    <LineIds Name="ExportArrayREALDataToTextFile">
+      <LineId Id="149" Count="0" />
+      <LineId Id="364" Count="0" />
+      <LineId Id="193" Count="0" />
+      <LineId Id="195" Count="1" />
+      <LineId Id="203" Count="0" />
+      <LineId Id="347" Count="0" />
+      <LineId Id="352" Count="1" />
+      <LineId Id="331" Count="0" />
+      <LineId Id="354" Count="0" />
+      <LineId Id="209" Count="0" />
+      <LineId Id="208" Count="0" />
+      <LineId Id="210" Count="0" />
+      <LineId Id="292" Count="0" />
+      <LineId Id="451" Count="1" />
+      <LineId Id="454" Count="8" />
+      <LineId Id="150" Count="0" />
+      <LineId Id="65" Count="0" />
+      <LineId Id="211" Count="0" />
+      <LineId Id="20" Count="0" />
+      <LineId Id="200" Count="1" />
+      <LineId Id="21" Count="0" />
+      <LineId Id="202" Count="0" />
+      <LineId Id="22" Count="0" />
+      <LineId Id="170" Count="3" />
+      <LineId Id="58" Count="0" />
+      <LineId Id="168" Count="1" />
+      <LineId Id="360" Count="0" />
+      <LineId Id="365" Count="0" />
+      <LineId Id="155" Count="0" />
+      <LineId Id="60" Count="0" />
+      <LineId Id="34" Count="0" />
+      <LineId Id="9" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>
