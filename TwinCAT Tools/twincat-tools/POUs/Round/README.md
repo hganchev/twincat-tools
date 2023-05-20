@@ -13,6 +13,7 @@ END_VAR
 VAR
     rOutValue   : REAL;
 END_VAR
+```
 
 ## Input Parameters
 - rValue (Input): The real number that you want to round.
@@ -28,6 +29,7 @@ VAR
     MyValue : REAL := 3.14159;
     RoundedValue : REAL;
 END_VAR
+```
 
 RoundedValue := F_ROUNDREAL(MyValue, 2);  // Round MyValue to 2 decimal places
 
