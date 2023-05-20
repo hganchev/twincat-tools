@@ -4,3 +4,4 @@
 
 *.suo
 *.~u
+/TwinCAT Tools/TwinCAT Tools/_Boot

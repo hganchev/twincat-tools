@@ -5,12 +5,14 @@
 
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[testRoundReal();]]></ST>
+      <ST><![CDATA[testRoundRealFail();
+testRoundRealSuccess();
+testRoundReal();]]></ST>
     </Implementation>
-    <Method Name="testRoundReal" Id="{972e2527-061b-4f8b-979d-4770a9b664a6}">
+    <Method Name="testRoundReal" Id="{18226e24-f317-455d-881a-ac6cfcd9211b}">
       <Declaration><![CDATA[METHOD testRoundReal
 VAR
-	rValue 		: REAL := 1000.555555;
+	rValue 		: REAL := 1000.556666;
 	Actual		: REAL;
 	Expected  	: REAL;
 END_VAR
@@ -22,18 +24,87 @@ END_VAR
 Actual := F_ROUNDREAL(rValue, 2); 
 
 // Arrange
+Expected := 1000.56;
+
+// Assert
+AssertEquals_REAL( Expected :=  Expected, 
+				Actual := Actual,
+				Delta := 0.00,
+			 	Message := 'testRoundReal Failed to round REAL');
+			 
+			 
+			 
+TEST_FINISHED();]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="testRoundRealFail" Id="{ce530fdf-2fc4-48d5-a14b-9756c10cbeca}">
+      <Declaration><![CDATA[METHOD testRoundRealFail
+VAR
+	rValue 		: REAL := 1000.555555;
+	Actual		: REAL;
+	Expected  	: REAL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[TEST('testRoundRealFail');
+
+// Act
+Actual := 1000.555; 
+
+// Arrange
+Expected := 1000.55;
+
+// Assert
+AssertFalse( Condition := Expected = Actual, 
+			 Message := 'testRoundRealFail Failed to round REAL');
+			 
+			 
+			 
+TEST_FINISHED();]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="testRoundRealSuccess" Id="{972e2527-061b-4f8b-979d-4770a9b664a6}">
+      <Declaration><![CDATA[METHOD testRoundRealSuccess
+VAR
+	rValue 		: REAL := 1000.555555;
+	Actual		: REAL;
+	Expected  	: REAL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[TEST('testRoundRealSuccess');
+
+// Act
+Actual := F_ROUNDREAL(rValue, 2); 
+
+// Arrange
 Expected := 1000.55;
 
 // Assert
 AssertEquals(Expected := Expected, 
 			 Actual := Actual,
-			 Message := 'testRoundReal Failed');]]></ST>
+			 Message := 'testRoundRealSuccess Failed to round REAL');
+			 
+			 
+			 
+TEST_FINISHED();]]></ST>
       </Implementation>
     </Method>
     <LineIds Name="FB_TestRound">
-      <LineId Id="9" Count="0" />
+      <LineId Id="9" Count="2" />
     </LineIds>
     <LineIds Name="FB_TestRound.testRoundReal">
+      <LineId Id="6" Count="9" />
+      <LineId Id="23" Count="1" />
+      <LineId Id="16" Count="3" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_TestRound.testRoundRealFail">
+      <LineId Id="9" Count="9" />
+      <LineId Id="20" Count="3" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_TestRound.testRoundRealSuccess">
       <LineId Id="16" Count="1" />
       <LineId Id="12" Count="0" />
       <LineId Id="5" Count="0" />
@@ -42,7 +113,7 @@ AssertEquals(Expected := Expected,
       <LineId Id="14" Count="0" />
       <LineId Id="13" Count="0" />
       <LineId Id="15" Count="0" />
-      <LineId Id="18" Count="1" />
+      <LineId Id="18" Count="5" />
     </LineIds>
   </POU>
 </TcPlcObject>
