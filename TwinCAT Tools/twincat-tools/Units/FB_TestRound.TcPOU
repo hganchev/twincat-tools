@@ -8,45 +8,17 @@
       <ST><![CDATA[//REAL
 testRoundRealFail();
 testRoundRealSuccess();
-testRoundReal();
+testRoundRealToHigh();
 
 // LREAL
 testRoundLREALFail();
 testRoundLREALSuccess();
-testRoundLREAL();]]></ST>
+testRoundLREALToHigh();]]></ST>
     </Implementation>
-    <Method Name="testRoundLREAL" Id="{9448a483-1a90-427c-b183-181b75054701}">
-      <Declaration><![CDATA[METHOD testRoundLREAL
-VAR
-	rValue 		: LREAL := 1000.556666;
-	Actual		: LREAL;
-	Expected  	: LREAL;
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[TEST('testRoundLREAL');
-
-// Act
-Actual := F_ROUNDLREAL(rValue, 2); 
-
-// Arrange
-Expected := 1000.56;
-
-// Assert
-AssertEquals_LREAL( Expected :=  Expected, 
-				Actual := Actual,
-				Delta := 0.00,
-			 	Message := 'testRoundLREAL Failed to round LREAL');
-			 
-			 
-			 
-TEST_FINISHED();]]></ST>
-      </Implementation>
-    </Method>
     <Method Name="testRoundLREALFail" Id="{75a07223-c3fb-4fe9-9720-e7d1da3e7f14}">
       <Declaration><![CDATA[METHOD testRoundLREALFail
 VAR
-	rValue 		: LREAL := 1000.555555;
+	rValue 		: LREAL := 1000.222222;
 	Actual		: LREAL;
 	Expected  	: LREAL;
 END_VAR
@@ -55,10 +27,10 @@ END_VAR
         <ST><![CDATA[TEST('testRoundLREALFail');
 
 // Act
-Actual := 1000.555; 
+Actual := 1000.222; 
 
 // Arrange
-Expected := 1000.55;
+Expected := 1000.22;
 
 // Assert
 AssertFalse( Condition := Expected = Actual, 
@@ -72,7 +44,7 @@ TEST_FINISHED();]]></ST>
     <Method Name="testRoundLREALSuccess" Id="{56bbe050-808e-4c28-80dd-438051f9d06c}">
       <Declaration><![CDATA[METHOD testRoundLREALSuccess
 VAR
-	rValue 		: LREAL := 1000.555555;
+	rValue 		: LREAL := 1000.222222;
 	Actual		: LREAL;
 	Expected  	: LREAL;
 END_VAR
@@ -84,7 +56,7 @@ END_VAR
 Actual := F_ROUNDLREAL(rValue, 2); 
 
 // Arrange
-Expected := 1000.55;
+Expected := 1000.22;
 
 // Assert
 AssertEquals(Expected := Expected, 
@@ -96,28 +68,28 @@ AssertEquals(Expected := Expected,
 TEST_FINISHED();]]></ST>
       </Implementation>
     </Method>
-    <Method Name="testRoundReal" Id="{18226e24-f317-455d-881a-ac6cfcd9211b}">
-      <Declaration><![CDATA[METHOD testRoundReal
+    <Method Name="testRoundLREALToHigh" Id="{9448a483-1a90-427c-b183-181b75054701}">
+      <Declaration><![CDATA[METHOD testRoundLREALToHigh
 VAR
-	rValue 		: REAL := 1000.556666;
-	Actual		: REAL;
-	Expected  	: REAL;
+	rValue 		: LREAL := 1000.226666;
+	Actual		: LREAL;
+	Expected  	: LREAL;
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[TEST('testRoundReal');
+        <ST><![CDATA[TEST('testRoundLREALToHigh');
 
 // Act
-Actual := F_ROUNDREAL(rValue, 2); 
+Actual := F_ROUNDLREAL(rValue, 2); 
 
 // Arrange
-Expected := 1000.56;
+Expected := 1000.23;
 
 // Assert
-AssertEquals_REAL( Expected :=  Expected, 
+AssertEquals_LREAL( Expected :=  Expected, 
 				Actual := Actual,
 				Delta := 0.00,
-			 	Message := 'testRoundReal Failed to round REAL');
+			 	Message := 'testRoundLREALToHigh Failed to round LREAL');
 			 
 			 
 			 
@@ -127,7 +99,7 @@ TEST_FINISHED();]]></ST>
     <Method Name="testRoundRealFail" Id="{ce530fdf-2fc4-48d5-a14b-9756c10cbeca}">
       <Declaration><![CDATA[METHOD testRoundRealFail
 VAR
-	rValue 		: REAL := 1000.555555;
+	rValue 		: REAL := 1000.222222;
 	Actual		: REAL;
 	Expected  	: REAL;
 END_VAR
@@ -136,10 +108,10 @@ END_VAR
         <ST><![CDATA[TEST('testRoundRealFail');
 
 // Act
-Actual := 1000.555; 
+Actual := 1000.222; 
 
 // Arrange
-Expected := 1000.55;
+Expected := 1000.22;
 
 // Assert
 AssertFalse( Condition := Expected = Actual, 
@@ -153,7 +125,7 @@ TEST_FINISHED();]]></ST>
     <Method Name="testRoundRealSuccess" Id="{972e2527-061b-4f8b-979d-4770a9b664a6}">
       <Declaration><![CDATA[METHOD testRoundRealSuccess
 VAR
-	rValue 		: REAL := 1000.555555;
+	rValue 		: REAL := 1000.22222;
 	Actual		: REAL;
 	Expected  	: REAL;
 END_VAR
@@ -165,7 +137,7 @@ END_VAR
 Actual := F_ROUNDREAL(rValue, 2); 
 
 // Arrange
-Expected := 1000.55;
+Expected := 1000.22;
 
 // Assert
 AssertEquals(Expected := Expected, 
@@ -177,16 +149,37 @@ AssertEquals(Expected := Expected,
 TEST_FINISHED();]]></ST>
       </Implementation>
     </Method>
+    <Method Name="testRoundRealToHigh" Id="{18226e24-f317-455d-881a-ac6cfcd9211b}">
+      <Declaration><![CDATA[METHOD testRoundRealToHigh
+VAR
+	rValue 		: REAL := 1000.226666;
+	Actual		: REAL;
+	Expected  	: REAL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[TEST('testRoundRealToHigh');
+
+// Act
+Actual := F_ROUNDREAL(rValue, 2); 
+
+// Arrange
+Expected := 1000.23;
+
+// Assert
+AssertEquals_REAL( Expected :=  Expected, 
+				Actual := Actual,
+				Delta := 0.00,
+			 	Message := 'testRoundRealToHigh Failed to round REAL');
+			 
+			 
+			 
+TEST_FINISHED();]]></ST>
+      </Implementation>
+    </Method>
     <LineIds Name="FB_TestRound">
-      <LineId Id="19" Count="0" />
-      <LineId Id="9" Count="2" />
-      <LineId Id="18" Count="0" />
-      <LineId Id="15" Count="2" />
+      <LineId Id="28" Count="7" />
       <LineId Id="14" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_TestRound.testRoundLREAL">
-      <LineId Id="6" Count="15" />
-      <LineId Id="5" Count="0" />
     </LineIds>
     <LineIds Name="FB_TestRound.testRoundLREALFail">
       <LineId Id="9" Count="13" />
@@ -196,10 +189,8 @@ TEST_FINISHED();]]></ST>
       <LineId Id="6" Count="14" />
       <LineId Id="5" Count="0" />
     </LineIds>
-    <LineIds Name="FB_TestRound.testRoundReal">
-      <LineId Id="6" Count="9" />
-      <LineId Id="23" Count="1" />
-      <LineId Id="16" Count="3" />
+    <LineIds Name="FB_TestRound.testRoundLREALToHigh">
+      <LineId Id="6" Count="15" />
       <LineId Id="5" Count="0" />
     </LineIds>
     <LineIds Name="FB_TestRound.testRoundRealFail">
@@ -217,6 +208,12 @@ TEST_FINISHED();]]></ST>
       <LineId Id="13" Count="0" />
       <LineId Id="15" Count="0" />
       <LineId Id="18" Count="5" />
+    </LineIds>
+    <LineIds Name="FB_TestRound.testRoundRealToHigh">
+      <LineId Id="6" Count="9" />
+      <LineId Id="23" Count="1" />
+      <LineId Id="16" Count="3" />
+      <LineId Id="5" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>

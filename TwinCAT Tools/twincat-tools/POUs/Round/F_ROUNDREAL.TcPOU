@@ -8,16 +8,24 @@ VAR_INPUT
 END_VAR
 VAR
 	rOutValue	: REAL;
+	rLeftValue	: REAL;
 END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[rOutValue := rValue * EXPT(10,iDecNumber);
-rOutValue := TRUNC(rOutValue) / EXPT(10,iDecNumber);
+rLeftValue := rOutValue - TRUNC(rOutValue);
+IF rLeftValue >= 0.5 THEN
+	rOutValue := TRUNC(rOutValue + 1) / EXPT(10,iDecNumber);
+ELSE
+	rOutValue := TRUNC(rOutValue) / EXPT(10,iDecNumber);
+END_IF
 F_ROUNDREAL := rOutValue;]]></ST>
     </Implementation>
     <LineIds Name="F_ROUNDREAL">
       <LineId Id="7" Count="0" />
+      <LineId Id="22" Count="1" />
       <LineId Id="12" Count="0" />
+      <LineId Id="24" Count="2" />
       <LineId Id="10" Count="0" />
     </LineIds>
   </POU>
