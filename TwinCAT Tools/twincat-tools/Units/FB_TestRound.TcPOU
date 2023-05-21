@@ -9,11 +9,13 @@
 testRoundRealFail();
 testRoundRealSuccess();
 testRoundRealToHigh();
+testRoundRealToHigh2();
 
 // LREAL
 testRoundLREALFail();
 testRoundLREALSuccess();
-testRoundLREALToHigh();]]></ST>
+testRoundLREALToHigh();
+testRoundLREALToHigh2();]]></ST>
     </Implementation>
     <Method Name="testRoundLREALFail" Id="{75a07223-c3fb-4fe9-9720-e7d1da3e7f14}">
       <Declaration><![CDATA[METHOD testRoundLREALFail
@@ -90,6 +92,34 @@ AssertEquals_LREAL( Expected :=  Expected,
 				Actual := Actual,
 				Delta := 0.00,
 			 	Message := 'testRoundLREALToHigh Failed to round LREAL');
+			 
+			 
+			 
+TEST_FINISHED();]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="testRoundLREALToHigh2" Id="{6b84cda5-43d5-442e-84c8-4d664ceb77da}">
+      <Declaration><![CDATA[METHOD testRoundLREALToHigh2
+VAR
+	rValue 		: LREAL := 1000.95;
+	Actual		: LREAL;
+	Expected  	: LREAL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[TEST('testRoundLREALToHigh2');
+
+// Act
+Actual := F_ROUNDLREAL(rValue, 1); 
+
+// Arrange
+Expected := 1001.0;
+
+// Assert
+AssertEquals_LREAL( Expected :=  Expected, 
+				Actual := Actual,
+				Delta := 0.00,
+			 	Message := 'testRoundLREALToHigh2 Failed to round LREAL');
 			 
 			 
 			 
@@ -177,9 +207,40 @@ AssertEquals_REAL( Expected :=  Expected,
 TEST_FINISHED();]]></ST>
       </Implementation>
     </Method>
+    <Method Name="testRoundRealToHigh2" Id="{539a4dcb-6c06-4466-a8fd-672b342c2928}">
+      <Declaration><![CDATA[METHOD testRoundRealToHigh2
+VAR
+	rValue 		: REAL := 1000.95;
+	Actual		: REAL;
+	Expected  	: REAL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[TEST('testRoundRealToHigh2');
+
+// Act
+Actual := F_ROUNDREAL(rValue, 1); 
+
+// Arrange
+Expected := 1001.0;
+
+// Assert
+AssertEquals_REAL( Expected :=  Expected, 
+				Actual := Actual,
+				Delta := 0.00,
+			 	Message := 'testRoundRealToHigh2 Failed to round REAL');
+			 
+			 
+			 
+TEST_FINISHED();]]></ST>
+      </Implementation>
+    </Method>
     <LineIds Name="FB_TestRound">
-      <LineId Id="28" Count="7" />
+      <LineId Id="28" Count="3" />
+      <LineId Id="36" Count="0" />
+      <LineId Id="32" Count="3" />
       <LineId Id="14" Count="0" />
+      <LineId Id="37" Count="0" />
     </LineIds>
     <LineIds Name="FB_TestRound.testRoundLREALFail">
       <LineId Id="9" Count="13" />
@@ -191,6 +252,10 @@ TEST_FINISHED();]]></ST>
     </LineIds>
     <LineIds Name="FB_TestRound.testRoundLREALToHigh">
       <LineId Id="6" Count="15" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_TestRound.testRoundLREALToHigh2">
+      <LineId Id="9" Count="15" />
       <LineId Id="5" Count="0" />
     </LineIds>
     <LineIds Name="FB_TestRound.testRoundRealFail">
@@ -213,6 +278,10 @@ TEST_FINISHED();]]></ST>
       <LineId Id="6" Count="9" />
       <LineId Id="23" Count="1" />
       <LineId Id="16" Count="3" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_TestRound.testRoundRealToHigh2">
+      <LineId Id="12" Count="15" />
       <LineId Id="5" Count="0" />
     </LineIds>
   </POU>
