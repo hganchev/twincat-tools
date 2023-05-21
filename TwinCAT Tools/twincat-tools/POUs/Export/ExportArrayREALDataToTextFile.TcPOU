@@ -29,7 +29,7 @@ VAR
 END_VAR
 
 VAR CONSTANT
-	iArrayByteSize 			: INT := Parameters.diByteMultiplierForExport * Parameters.iArrayREALSize;
+	iArrayByteSize 			: DINT := Parameters.diByteMultiplierForExport * Parameters.iArrayREALSize;
 END_VAR
 
 ]]></Declaration>

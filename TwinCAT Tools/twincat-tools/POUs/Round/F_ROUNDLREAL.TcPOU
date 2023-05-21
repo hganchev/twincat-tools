@@ -13,7 +13,7 @@ END_VAR
     <Implementation>
       <ST><![CDATA[rOutValue := rValue * EXPT(10,iDecNumber);
 rOutValue := TRUNC(rOutValue) / EXPT(10,iDecNumber);
-F_ROUNDREAL := rOutValue;]]></ST>
+F_ROUNDLREAL := rOutValue;]]></ST>
     </Implementation>
     <LineIds Name="F_ROUNDLREAL">
       <LineId Id="7" Count="0" />
