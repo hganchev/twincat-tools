@@ -5,10 +5,97 @@
 
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[testRoundRealFail();
+      <ST><![CDATA[//REAL
+testRoundRealFail();
 testRoundRealSuccess();
-testRoundReal();]]></ST>
+testRoundReal();
+
+// LREAL
+testRoundLREALFail();
+testRoundLREALSuccess();
+testRoundLREAL();]]></ST>
     </Implementation>
+    <Method Name="testRoundLREAL" Id="{9448a483-1a90-427c-b183-181b75054701}">
+      <Declaration><![CDATA[METHOD testRoundLREAL
+VAR
+	rValue 		: LREAL := 1000.556666;
+	Actual		: LREAL;
+	Expected  	: LREAL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[TEST('testRoundLREAL');
+
+// Act
+Actual := F_ROUNDLREAL(rValue, 2); 
+
+// Arrange
+Expected := 1000.56;
+
+// Assert
+AssertEquals_LREAL( Expected :=  Expected, 
+				Actual := Actual,
+				Delta := 0.00,
+			 	Message := 'testRoundLREAL Failed to round LREAL');
+			 
+			 
+			 
+TEST_FINISHED();]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="testRoundLREALFail" Id="{75a07223-c3fb-4fe9-9720-e7d1da3e7f14}">
+      <Declaration><![CDATA[METHOD testRoundLREALFail
+VAR
+	rValue 		: LREAL := 1000.555555;
+	Actual		: LREAL;
+	Expected  	: LREAL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[TEST('testRoundLREALFail');
+
+// Act
+Actual := 1000.555; 
+
+// Arrange
+Expected := 1000.55;
+
+// Assert
+AssertFalse( Condition := Expected = Actual, 
+			 Message := 'testRoundLREALFail Failed to round LREAL');
+			 
+			 
+			 
+TEST_FINISHED();]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="testRoundLREALSuccess" Id="{56bbe050-808e-4c28-80dd-438051f9d06c}">
+      <Declaration><![CDATA[METHOD testRoundLREALSuccess
+VAR
+	rValue 		: LREAL := 1000.555555;
+	Actual		: LREAL;
+	Expected  	: LREAL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[TEST('testRoundLREALSuccess');
+
+// Act
+Actual := F_ROUNDLREAL(rValue, 2); 
+
+// Arrange
+Expected := 1000.55;
+
+// Assert
+AssertEquals(Expected := Expected, 
+			 Actual := Actual,
+			 Message := 'testRoundLREALSuccess Failed to round LREAL');
+			 
+			 
+			 
+TEST_FINISHED();]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="testRoundReal" Id="{18226e24-f317-455d-881a-ac6cfcd9211b}">
       <Declaration><![CDATA[METHOD testRoundReal
 VAR
@@ -91,7 +178,23 @@ TEST_FINISHED();]]></ST>
       </Implementation>
     </Method>
     <LineIds Name="FB_TestRound">
+      <LineId Id="19" Count="0" />
       <LineId Id="9" Count="2" />
+      <LineId Id="18" Count="0" />
+      <LineId Id="15" Count="2" />
+      <LineId Id="14" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_TestRound.testRoundLREAL">
+      <LineId Id="6" Count="15" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_TestRound.testRoundLREALFail">
+      <LineId Id="9" Count="13" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_TestRound.testRoundLREALSuccess">
+      <LineId Id="6" Count="14" />
+      <LineId Id="5" Count="0" />
     </LineIds>
     <LineIds Name="FB_TestRound.testRoundReal">
       <LineId Id="6" Count="9" />
