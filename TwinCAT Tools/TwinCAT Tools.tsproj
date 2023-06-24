@@ -6,13 +6,10 @@
 				<Task Id="3" Priority="20" CycleTime="100000" AmsPort="350" AdtTasks="true">
 					<Name>PlcTask</Name>
 				</Task>
-				<Task Id="4" Priority="1" CycleTime="100000" AmsPort="351" AdtTasks="true">
-					<Name>UnitsTask</Name>
-				</Task>
 			</Tasks>
 		</System>
 		<Plc>
-			<Project GUID="{EB33C53B-F43B-4CB3-B9E8-0D48A8B92EFE}" Name="twincat-tools" PrjFilePath="twincat-tools\twincat-tools.plcproj" TmcFilePath="twincat-tools\twincat-tools.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
+			<Project Disabled="true" GUID="{EB33C53B-F43B-4CB3-B9E8-0D48A8B92EFE}" Name="twincat-tools" PrjFilePath="twincat-tools\twincat-tools.plcproj" TmcFilePath="twincat-tools\twincat-tools.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
 				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="twincat-tools\twincat-tools.tmc">
 					<Name>twincat-tools Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>

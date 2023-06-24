@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
-  <POU Name="FB_TestRound" Id="{92000e0b-3a08-4346-91c0-8b471b1ff965}" SpecialFunc="None">
+  <POU Name="FB_TestRound" Id="{d168d027-9d5e-46ed-9155-14182fbf4f27}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK FB_TestRound EXTENDS TcUnit.FB_TestSuite
 
 ]]></Declaration>
@@ -17,7 +17,7 @@ testRoundLREALSuccess();
 testRoundLREALToHigh();
 testRoundLREALToHigh2();]]></ST>
     </Implementation>
-    <Method Name="testRoundLREALFail" Id="{75a07223-c3fb-4fe9-9720-e7d1da3e7f14}">
+    <Method Name="testRoundLREALFail" Id="{0190ed15-4c58-455b-af97-ebeb1778d87e}">
       <Declaration><![CDATA[METHOD testRoundLREALFail
 VAR
 	rValue 		: LREAL := 1000.222222;
@@ -43,7 +43,7 @@ AssertFalse( Condition := Expected = Actual,
 TEST_FINISHED();]]></ST>
       </Implementation>
     </Method>
-    <Method Name="testRoundLREALSuccess" Id="{56bbe050-808e-4c28-80dd-438051f9d06c}">
+    <Method Name="testRoundLREALSuccess" Id="{db3ba594-9ac6-4320-9154-cadf6b53cb1a}">
       <Declaration><![CDATA[METHOD testRoundLREALSuccess
 VAR
 	rValue 		: LREAL := 1000.222222;
@@ -70,7 +70,7 @@ AssertEquals(Expected := Expected,
 TEST_FINISHED();]]></ST>
       </Implementation>
     </Method>
-    <Method Name="testRoundLREALToHigh" Id="{9448a483-1a90-427c-b183-181b75054701}">
+    <Method Name="testRoundLREALToHigh" Id="{2a44110a-28bc-4805-9a4e-e040b015d8a3}">
       <Declaration><![CDATA[METHOD testRoundLREALToHigh
 VAR
 	rValue 		: LREAL := 1000.226666;
@@ -98,7 +98,7 @@ AssertEquals_LREAL( Expected :=  Expected,
 TEST_FINISHED();]]></ST>
       </Implementation>
     </Method>
-    <Method Name="testRoundLREALToHigh2" Id="{6b84cda5-43d5-442e-84c8-4d664ceb77da}">
+    <Method Name="testRoundLREALToHigh2" Id="{77181605-9ff0-4b2c-a468-c7ebca74ce8d}">
       <Declaration><![CDATA[METHOD testRoundLREALToHigh2
 VAR
 	rValue 		: LREAL := 1000.95;
@@ -126,7 +126,7 @@ AssertEquals_LREAL( Expected :=  Expected,
 TEST_FINISHED();]]></ST>
       </Implementation>
     </Method>
-    <Method Name="testRoundRealFail" Id="{ce530fdf-2fc4-48d5-a14b-9756c10cbeca}">
+    <Method Name="testRoundRealFail" Id="{6c893c88-a242-439a-98ee-31082f13b45e}">
       <Declaration><![CDATA[METHOD testRoundRealFail
 VAR
 	rValue 		: REAL := 1000.222222;
@@ -152,7 +152,7 @@ AssertFalse( Condition := Expected = Actual,
 TEST_FINISHED();]]></ST>
       </Implementation>
     </Method>
-    <Method Name="testRoundRealSuccess" Id="{972e2527-061b-4f8b-979d-4770a9b664a6}">
+    <Method Name="testRoundRealSuccess" Id="{348be370-bcb0-42a0-96a8-49bab6374bd8}">
       <Declaration><![CDATA[METHOD testRoundRealSuccess
 VAR
 	rValue 		: REAL := 1000.22222;
@@ -179,7 +179,7 @@ AssertEquals(Expected := Expected,
 TEST_FINISHED();]]></ST>
       </Implementation>
     </Method>
-    <Method Name="testRoundRealToHigh" Id="{18226e24-f317-455d-881a-ac6cfcd9211b}">
+    <Method Name="testRoundRealToHigh" Id="{d840b773-6dc8-4f18-baa5-2e617da52be4}">
       <Declaration><![CDATA[METHOD testRoundRealToHigh
 VAR
 	rValue 		: REAL := 1000.226666;
@@ -207,7 +207,7 @@ AssertEquals_REAL( Expected :=  Expected,
 TEST_FINISHED();]]></ST>
       </Implementation>
     </Method>
-    <Method Name="testRoundRealToHigh2" Id="{539a4dcb-6c06-4466-a8fd-672b342c2928}">
+    <Method Name="testRoundRealToHigh2" Id="{4257ebb0-fd6a-4a94-86b6-099df61f20c3}">
       <Declaration><![CDATA[METHOD testRoundRealToHigh2
 VAR
 	rValue 		: REAL := 1000.95;

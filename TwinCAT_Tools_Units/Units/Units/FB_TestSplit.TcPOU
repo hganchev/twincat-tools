@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
-  <POU Name="FB_TestSplit" Id="{990e2a8f-1f06-451f-ab3b-2f68a8ac23f0}" SpecialFunc="None">
+  <POU Name="FB_TestSplit" Id="{c399aa91-0228-4585-b4f7-87e722765771}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK FB_TestSplit EXTENDS TcUnit.FB_TestSuite]]></Declaration>
     <Implementation>
       <ST><![CDATA[testSplit();]]></ST>
     </Implementation>
-    <Method Name="testSplit" Id="{0df167e9-f038-40f0-ac1c-72de488f7c2e}">
+    <Method Name="testSplit" Id="{71d86309-488d-4c73-9afa-751071041933}">
       <Declaration><![CDATA[METHOD testSplit : BOOL
 VAR
 	sToSplit		: STRING(255) := 'Hello,this,is,split,test';
