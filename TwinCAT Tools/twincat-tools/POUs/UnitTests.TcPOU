@@ -4,6 +4,7 @@
     <Declaration><![CDATA[PROGRAM UnitTests
 VAR
 	fbTestRound		: Fb_TestRound;
+	fbTestSplit		: FB_TestSplit;
 END_VAR
 ]]></Declaration>
     <Implementation>

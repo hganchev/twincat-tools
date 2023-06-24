@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <POU Name="F_STRINGSPLIT" Id="{bf09d747-8a2c-4de8-9a8b-909da6c686c1}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION F_STRINGSPLIT : ARRAY[0..Parameters.iSplitArraySize] OF STRING(255)
+VAR_INPUT
+	sInput			: STRING(255);
+	sSplitChar		: STRING(1);
+END_VAR
+VAR
+	sCopy			: STRING(255);
+	sSplit			: STRING(255);
+	iDeleteLen		: INT;
+	i				: INT;
+END_VAR
+
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[sCopy := sInput;
+
+FOR i := 0 TO Parameters.iSplitArraySize DO
+	IF FIND(sCopy, sSplitChar) > 0 THEN
+		sSplit := LEFT(sCopy, FIND(sCopy, sSplitChar) - 1);
+		iDeleteLen := LEN(sSplit) + LEN(sSplitChar);
+	ELSE
+		sSplit := sCopy;
+		iDeleteLen := LEN(sSplit);
+	END_IF
+	
+	// Take the string value
+	F_STRINGSPLIT[i] := sSplit;
+	
+	// Delete 
+	sCopy := DELETE(sCopy, iDeleteLen, 1);
+	
+	// End of split
+	IF sCopy = '' THEN
+		EXIT;
+	END_IF
+END_FOR]]></ST>
+    </Implementation>
+    <LineIds Name="F_STRINGSPLIT">
+      <LineId Id="7" Count="0" />
+      <LineId Id="24" Count="0" />
+      <LineId Id="19" Count="0" />
+      <LineId Id="17" Count="0" />
+      <LineId Id="20" Count="0" />
+      <LineId Id="37" Count="0" />
+      <LineId Id="28" Count="0" />
+      <LineId Id="31" Count="0" />
+      <LineId Id="44" Count="0" />
+      <LineId Id="21" Count="0" />
+      <LineId Id="29" Count="0" />
+      <LineId Id="35" Count="0" />
+      <LineId Id="30" Count="0" />
+      <LineId Id="32" Count="2" />
+      <LineId Id="39" Count="4" />
+      <LineId Id="27" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

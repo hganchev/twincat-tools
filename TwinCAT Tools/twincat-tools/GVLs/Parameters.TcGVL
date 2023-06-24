@@ -9,6 +9,9 @@ VAR_GLOBAL CONSTANT
 	// Export Array REAL data to text file parameters
 	iArrayREALSize						: INT := 255;
 	diByteMultiplierForExport			: DINT := 10; // This multiplies with array Size
+	
+	// Split Parameters
+	iSplitArraySize						: INT := 4;
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>
