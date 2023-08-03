@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
-  <POU Name="F_GET_INT_IN_RANGE" Id="{1b0b04bb-1af9-4b9d-a0ec-f97d90bbf3aa}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION F_GET_INT_IN_RANGE : INT
+  <POU Name="F_GET_IN_RANGE_INT" Id="{1b0b04bb-1af9-4b9d-a0ec-f97d90bbf3aa}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION F_GET_IN_RANGE_INT : INT
 VAR_INPUT
 	value, range_max, range_min, value_max, value_min : INT; // Where range max/min is the range you want to fit the value
 END_VAR
@@ -9,9 +9,9 @@ VAR
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[F_GET_INT_IN_RANGE := ((LIMIT(value_min, value, value_max) - value_min)*(range_max - range_min))/(value_max-value_min) + range_min;]]></ST>
+      <ST><![CDATA[F_GET_IN_RANGE_INT := ((LIMIT(value_min, value, value_max) - value_min)*(range_max - range_min))/(value_max-value_min) + range_min;]]></ST>
     </Implementation>
-    <LineIds Name="F_GET_INT_IN_RANGE">
+    <LineIds Name="F_GET_IN_RANGE_INT">
       <LineId Id="7" Count="0" />
     </LineIds>
   </POU>

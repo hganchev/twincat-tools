@@ -9,8 +9,67 @@ testRange100to1000_max();
 testRange100to1000_mid();
 testRange100to1000_OverMax();
 testRange100to1000_UnderMin();
-]]></ST>
+
+// Bounds
+testCheckBounds_valid();
+testCheckBounds_invalid();]]></ST>
     </Implementation>
+    <Method Name="testCheckBounds_invalid" Id="{4e52e6ee-a9bd-44d5-b575-0f3c3d47632a}">
+      <Declaration><![CDATA[METHOD testCheckBounds_invalid
+VAR
+	
+	Actual  	: BOOL; 
+	Expected 	: BOOL;
+	
+	arrayIn		: ARRAY[0..5] OF INT;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[TEST('testCheckBounds_invalid');
+
+// Act
+Actual := F_IN_BOUNDS_ARRAY_INT(6, arrayIn); 
+
+// Arrange
+Expected := FALSE;
+
+// Assert
+AssertEquals_BOOL( Expected := Expected, 
+				  Actual := Actual,
+			 	  Message := 'testCheckBounds_invalid Failed to get in bounds');		 
+			 
+			 
+TEST_FINISHED();]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="testCheckBounds_valid" Id="{7e8a22f1-ff1c-4dd7-9eec-e3599d699a46}">
+      <Declaration><![CDATA[METHOD testCheckBounds_valid
+VAR
+	
+	Actual  	: BOOL; 
+	Expected 	: BOOL;
+	
+	arrayIn		: ARRAY[0..5] OF INT;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[TEST('testCheckBounds_valid');
+
+// Act
+Actual := F_IN_BOUNDS_ARRAY_INT(5, arrayIn); 
+
+// Arrange
+Expected := TRUE;
+
+// Assert
+AssertEquals_BOOL( Expected := Expected, 
+				  Actual := Actual,
+			 	  Message := 'testCheckBounds_valid Failed to get in bounds');		 
+			 
+			 
+TEST_FINISHED();]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="testRange100to1000_max" Id="{e3272f19-c110-4b42-88ab-a38ea1065e51}">
       <Declaration><![CDATA[METHOD testRange100to1000_max
 VAR
@@ -32,7 +91,7 @@ END_VAR
         <ST><![CDATA[TEST('testRange100to1000_max');
 
 // Act
-Actual := F_GET_INT_IN_RANGE(iValue, iRange_Max, iRange_Min, iValue_Max, iValue_Min); 
+Actual := F_GET_IN_RANGE_INT(iValue, iRange_Max, iRange_Min, iValue_Max, iValue_Min); 
 
 // Arrange
 Expected := 1000;
@@ -71,7 +130,7 @@ END_VAR
         <ST><![CDATA[TEST('testRange100to1000_mid');
 
 // Act
-Actual := F_GET_INT_IN_RANGE(iValue, iRange_Max, iRange_Min, iValue_Max, iValue_Min); 
+Actual := F_GET_IN_RANGE_INT(iValue, iRange_Max, iRange_Min, iValue_Max, iValue_Min); 
 
 // Arrange
 Expected := 550;
@@ -105,7 +164,7 @@ END_VAR
         <ST><![CDATA[TEST('testRange100to1000_min');
 
 // Act
-Actual := F_GET_INT_IN_RANGE(iValue, iRange_Max, iRange_Min, iValue_Max, iValue_Min); 
+Actual := F_GET_IN_RANGE_INT(iValue, iRange_Max, iRange_Min, iValue_Max, iValue_Min); 
 
 // Arrange
 Expected := 100;
@@ -141,7 +200,7 @@ END_VAR
         <ST><![CDATA[TEST('testRange100to1000_OverMax');
 
 // Act
-Actual := F_GET_INT_IN_RANGE(iValue, iRange_Max, iRange_Min, iValue_Max, iValue_Min); 
+Actual := F_GET_IN_RANGE_INT(iValue, iRange_Max, iRange_Min, iValue_Max, iValue_Min); 
 
 // Arrange
 Expected := iRange_max;
@@ -175,7 +234,7 @@ END_VAR
         <ST><![CDATA[TEST('testRange100to1000_UnderMin');
 
 // Act
-Actual := F_GET_INT_IN_RANGE(iValue, iRange_Max, iRange_Min, iValue_Max, iValue_Min); 
+Actual := F_GET_IN_RANGE_INT(iValue, iRange_Max, iRange_Min, iValue_Max, iValue_Min); 
 
 // Arrange
 Expected := iRange_min;
@@ -191,7 +250,20 @@ TEST_FINISHED();]]></ST>
     <LineIds Name="FB_TestRange">
       <LineId Id="9" Count="2" />
       <LineId Id="14" Count="1" />
+      <LineId Id="18" Count="0" />
+      <LineId Id="17" Count="0" />
+      <LineId Id="19" Count="0" />
       <LineId Id="12" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_TestRange.testCheckBounds_invalid">
+      <LineId Id="6" Count="11" />
+      <LineId Id="24" Count="1" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_TestRange.testCheckBounds_valid">
+      <LineId Id="6" Count="11" />
+      <LineId Id="24" Count="1" />
+      <LineId Id="5" Count="0" />
     </LineIds>
     <LineIds Name="FB_TestRange.testRange100to1000_max">
       <LineId Id="6" Count="9" />

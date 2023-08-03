@@ -1,11 +1,12 @@
-# F_GET_INT_IN_RANGE Function
+# F_GET_IN_RANGE_INT Function
 
-The `F_GET_INT_IN_RANGE` function is a custom function in TwinCAT that allows you to map an input integer value from one range to another range.
+The `F_GET_IN_RANGE_INT` function is a custom function in TwinCAT that allows you to map an input 
+integer value from one range to another range.
 
 ## Function Signature
 
 ```pascal
-FUNCTION F_GET_INT_IN_RANGE : INT
+FUNCTION F_GET_IN_RANGE_INT : INT
 VAR_INPUT
     value       : INT;  // Input value to map
     range_max   : INT;  // Maximum value of the target range
@@ -25,7 +26,7 @@ END_VAR
 - `value_min` (Input): The minimum value of the input value range.
 
 # Return Value
-`F_GET_INT_IN_RANGE` returns an `INT` value that represents the mapped integer value from the input range to the target range.
+`F_GET_IN_RANGE_INT` returns an `INT` value that represents the mapped integer value from the input range to the target range.
 
 # Usage Example
 ```pascal
@@ -35,9 +36,9 @@ VAR
 END_VAR
 
 // Map InputValue from the range [0, 100] to the range [500, 1000]
-MappedValue := F_GET_INT_IN_RANGE(InputValue, 1000, 500, 100, 0);
+MappedValue := F_GET_IN_RANGE_INT(InputValue, 1000, 500, 100, 0);
 ```
-In this example, the `InputValue` variable represents the integer value that you want to map. The `F_GET_INT_IN_RANGE` 
+In this example, the `InputValue` variable represents the integer value that you want to map. The `F_GET_IN_RANGE_INT` 
 function is then used to map InputValue from the range `[0, 100]` to the range `[500, 1000]`. 
 The result is stored in the MappedValue variable.
 

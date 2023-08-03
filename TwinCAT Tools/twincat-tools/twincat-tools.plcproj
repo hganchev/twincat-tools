@@ -36,7 +36,10 @@
     <Compile Include="POUs\Export\ExportArrayREALDataToTextFile.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\Range\F_GET_INT_IN_RANGE.TcPOU">
+    <Compile Include="POUs\Range\F_IN_BOUNDS_ARRAY_INT.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\Range\F_GET_IN_RANGE_INT.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\Round\F_ROUND_REAL.TcPOU">
