@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
-  <POU Name="F_ROUNDLREAL" Id="{625e7ba7-48bd-4cac-b9d8-1117997efc5b}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION F_ROUNDLREAL : LREAL
+  <POU Name="F_ROUND_REAL" Id="{fe6e4e1f-2305-4c5c-9f1d-a0c02cbd7da5}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION F_ROUND_REAL : REAL
 VAR_INPUT
-	rValue		: LREAL; // Input Value
+	rValue		: REAL; // Input Value
 	iDecNumber	: INT; 	// Numbers after decimal point
 END_VAR
 VAR
-	rOutValue	: LREAL;
-	rLeftValue	: LREAL;
+	rOutValue	: REAL;
+	rLeftValue	: REAL;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -19,13 +19,13 @@ IF rLeftValue >= 0.5 THEN
 ELSE
 	rOutValue := TRUNC(rOutValue) / EXPT(10,iDecNumber);
 END_IF
-F_ROUNDLREAL := rOutValue;]]></ST>
+F_ROUND_REAL := rOutValue;]]></ST>
     </Implementation>
-    <LineIds Name="F_ROUNDLREAL">
+    <LineIds Name="F_ROUND_REAL">
       <LineId Id="7" Count="0" />
-      <LineId Id="26" Count="0" />
-      <LineId Id="21" Count="3" />
+      <LineId Id="22" Count="1" />
       <LineId Id="12" Count="0" />
+      <LineId Id="24" Count="2" />
       <LineId Id="10" Count="0" />
     </LineIds>
   </POU>
