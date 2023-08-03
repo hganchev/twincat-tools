@@ -9,7 +9,7 @@ VAR
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[F_GET_INT_IN_RANGE := ((value - value_min)*(range_max - range_min))/(value_max-value_min) + range_min;]]></ST>
+      <ST><![CDATA[F_GET_INT_IN_RANGE := ((LIMIT(value_min, value, value_max) - value_min)*(range_max - range_min))/(value_max-value_min) + range_min;]]></ST>
     </Implementation>
     <LineIds Name="F_GET_INT_IN_RANGE">
       <LineId Id="7" Count="0" />

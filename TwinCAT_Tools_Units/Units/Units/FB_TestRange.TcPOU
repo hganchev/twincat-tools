@@ -7,6 +7,8 @@
       <ST><![CDATA[testRange100to1000_min();
 testRange100to1000_max();
 testRange100to1000_mid();
+testRange100to1000_OverMax();
+testRange100to1000_UnderMin();
 ]]></ST>
     </Implementation>
     <Method Name="testRange100to1000_max" Id="{e3272f19-c110-4b42-88ab-a38ea1065e51}">
@@ -118,8 +120,78 @@ AssertEquals_INT( Expected := Expected,
 TEST_FINISHED();]]></ST>
       </Implementation>
     </Method>
+    <Method Name="testRange100to1000_OverMax" Id="{316ffd6d-1509-4599-b2f2-44d2c76dbe5b}">
+      <Declaration><![CDATA[METHOD testRange100to1000_OverMax
+VAR
+	iValue		: INT := 200;
+	
+	iValue_Max	: INT := 100;
+	iValue_min	: INT := 0;
+	
+	iRange_max	: INT := 1000;
+	iRange_min	: INT := 100;
+	
+	Actual		: INT;
+	Expected  	: INT;
+	
+	ActualVarInfo : __SYSTEM.VAR_INFO;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[TEST('testRange100to1000_OverMax');
+
+// Act
+Actual := F_GET_INT_IN_RANGE(iValue, iRange_Max, iRange_Min, iValue_Max, iValue_Min); 
+
+// Arrange
+Expected := iRange_max;
+
+// Assert
+AssertEquals_INT( Expected := Expected, 
+				  Actual := Actual,
+			 	  Message := 'testRange100to1000_OverMax Failed to get in range INT');			 
+			 
+TEST_FINISHED();]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="testRange100to1000_UnderMin" Id="{08d8553f-0e41-4d95-b548-1755c0fad12f}">
+      <Declaration><![CDATA[METHOD testRange100to1000_UnderMin
+VAR
+	iValue		: INT := -100;
+	
+	iValue_Max	: INT := 100;
+	iValue_min	: INT := 0;
+	
+	iRange_max	: INT := 1000;
+	iRange_min	: INT := 100;
+	
+	Actual		: INT;
+	Expected  	: INT;
+	
+	ActualVarInfo : __SYSTEM.VAR_INFO;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[TEST('testRange100to1000_UnderMin');
+
+// Act
+Actual := F_GET_INT_IN_RANGE(iValue, iRange_Max, iRange_Min, iValue_Max, iValue_Min); 
+
+// Arrange
+Expected := iRange_min;
+
+// Assert
+AssertEquals_INT( Expected := Expected, 
+				  Actual := Actual,
+			 	  Message := 'testRange100to1000_UnderMin Failed to get in range INT');			 
+			 
+TEST_FINISHED();]]></ST>
+      </Implementation>
+    </Method>
     <LineIds Name="FB_TestRange">
-      <LineId Id="9" Count="3" />
+      <LineId Id="9" Count="2" />
+      <LineId Id="14" Count="1" />
+      <LineId Id="12" Count="0" />
     </LineIds>
     <LineIds Name="FB_TestRange.testRange100to1000_max">
       <LineId Id="6" Count="9" />
@@ -143,6 +215,20 @@ TEST_FINISHED();]]></ST>
       <LineId Id="6" Count="9" />
       <LineId Id="30" Count="0" />
       <LineId Id="16" Count="3" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_TestRange.testRange100to1000_OverMax">
+      <LineId Id="6" Count="9" />
+      <LineId Id="30" Count="0" />
+      <LineId Id="16" Count="0" />
+      <LineId Id="19" Count="0" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_TestRange.testRange100to1000_UnderMin">
+      <LineId Id="6" Count="9" />
+      <LineId Id="30" Count="0" />
+      <LineId Id="16" Count="0" />
+      <LineId Id="19" Count="0" />
       <LineId Id="5" Count="0" />
     </LineIds>
   </POU>
