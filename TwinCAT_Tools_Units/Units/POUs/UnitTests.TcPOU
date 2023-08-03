@@ -5,6 +5,7 @@
 VAR
 	fbTestRound		: Fb_TestRound;
 	fbTestSplit		: FB_TestSplit;
+	fbTestRange		: FB_TestRange;
 END_VAR
 ]]></Declaration>
     <Implementation>

@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <POU Name="FB_TestRange" Id="{905c3600-7cc8-425a-9a8d-1f2dcb1a9cd4}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_TestRange EXTENDS TcUnit.FB_TestSuite
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[testRange100to1000_min();
+testRange100to1000_max();
+testRange100to1000_mid();
+]]></ST>
+    </Implementation>
+    <Method Name="testRange100to1000_max" Id="{e3272f19-c110-4b42-88ab-a38ea1065e51}">
+      <Declaration><![CDATA[METHOD testRange100to1000_max
+VAR
+	iValue		: INT := 100;
+	
+	iValue_Max	: INT := 100;
+	iValue_min	: INT := 0;
+	
+	iRange_max	: INT := 1000;
+	iRange_min	: INT := 100;
+	
+	Actual		: INT;
+	Expected  	: INT;
+	
+	ActualVarInfo : __SYSTEM.VAR_INFO;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[TEST('testRange100to1000_max');
+
+// Act
+Actual := F_GET_INT_IN_RANGE(iValue, iRange_Max, iRange_Min, iValue_Max, iValue_Min); 
+
+// Arrange
+Expected := 1000;
+
+// Assert
+AssertEquals_INT( Expected := Expected, 
+				  Actual := Actual,
+			 	  Message := 'testRange100to1000_max Failed to get in range INT');
+
+ActualVarInfo :=__VARINFO(Actual);
+ 
+AssertTrue(  Condition := ActualVarInfo.TypeName = 'INT',
+			  Message := 'testRange100to1000_max Failed in type INT');
+			 
+			 
+			 
+TEST_FINISHED();]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="testRange100to1000_mid" Id="{5b5fc52d-dfcc-4767-a063-8bbcc5a8a407}">
+      <Declaration><![CDATA[METHOD testRange100to1000_mid
+VAR
+	iValue		: INT := 50;
+	
+	iValue_Max	: INT := 100;
+	iValue_min	: INT := 0;
+	
+	iRange_max	: INT := 1000;
+	iRange_min	: INT := 100;
+	
+	Actual		: INT;
+	Expected  	: INT;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[TEST('testRange100to1000_mid');
+
+// Act
+Actual := F_GET_INT_IN_RANGE(iValue, iRange_Max, iRange_Min, iValue_Max, iValue_Min); 
+
+// Arrange
+Expected := 550;
+
+// Assert
+AssertEquals_INT( Expected := Expected, 
+				  Actual := Actual,
+			 	  Message := 'testRange100to1000_mid Failed to get in range INT');
+			 
+			 
+			 
+TEST_FINISHED();]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="testRange100to1000_min" Id="{c94efede-8e05-4cac-91ad-0f8f71b78b03}">
+      <Declaration><![CDATA[METHOD testRange100to1000_min
+VAR
+	iValue		: INT := 0;
+	
+	iValue_Max	: INT := 100;
+	iValue_min	: INT := 0;
+	
+	iRange_max	: INT := 1000;
+	iRange_min	: INT := 100;
+	
+	Actual		: INT;
+	Expected  	: INT;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[TEST('testRange100to1000_min');
+
+// Act
+Actual := F_GET_INT_IN_RANGE(iValue, iRange_Max, iRange_Min, iValue_Max, iValue_Min); 
+
+// Arrange
+Expected := 100;
+
+// Assert
+AssertEquals_INT( Expected := Expected, 
+				  Actual := Actual,
+			 	  Message := 'testRange100to1000_min Failed to get in range INT');
+			 
+			 
+			 
+TEST_FINISHED();]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="FB_TestRange">
+      <LineId Id="9" Count="3" />
+    </LineIds>
+    <LineIds Name="FB_TestRange.testRange100to1000_max">
+      <LineId Id="6" Count="9" />
+      <LineId Id="30" Count="0" />
+      <LineId Id="16" Count="0" />
+      <LineId Id="61" Count="0" />
+      <LineId Id="57" Count="0" />
+      <LineId Id="64" Count="0" />
+      <LineId Id="58" Count="0" />
+      <LineId Id="60" Count="0" />
+      <LineId Id="17" Count="2" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_TestRange.testRange100to1000_mid">
+      <LineId Id="6" Count="9" />
+      <LineId Id="30" Count="0" />
+      <LineId Id="16" Count="3" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_TestRange.testRange100to1000_min">
+      <LineId Id="6" Count="9" />
+      <LineId Id="30" Count="0" />
+      <LineId Id="16" Count="3" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

@@ -20,7 +20,7 @@ END_VAR
 // Arrange
 
 // Act
-sSplit := F_STRINGSPLIT(sToSplit, ',');
+sSplit := F_STRING_SPLIT(sToSplit, ',');
 
 // Assert
 FOR i := 0 TO Parameters.iSplitArraySize DO

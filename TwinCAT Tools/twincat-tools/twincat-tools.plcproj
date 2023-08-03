@@ -36,16 +36,19 @@
     <Compile Include="POUs\Export\ExportArrayREALDataToTextFile.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\Round\F_ROUNDREAL.TcPOU">
+    <Compile Include="POUs\Range\F_GET_INT_IN_RANGE.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\Round\F_ROUNDLREAL.TcPOU">
+    <Compile Include="POUs\Round\F_ROUND_REAL.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\String\F_STRINGSPLIT.TcPOU">
+    <Compile Include="POUs\Round\F_ROUND_LREAL.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\TimeStamp\F_GETTIMESTAMP.TcPOU">
+    <Compile Include="POUs\String\F_STRING_SPLIT.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\TimeStamp\F_GET_TIME_STAMP.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Version\Global_Version.TcGVL">
@@ -58,6 +61,7 @@
     <Folder Include="GVLs" />
     <Folder Include="Examples" />
     <Folder Include="POUs\Export" />
+    <Folder Include="POUs\Range" />
     <Folder Include="POUs\String" />
     <Folder Include="POUs\TimeStamp" />
     <Folder Include="POUs\Round" />

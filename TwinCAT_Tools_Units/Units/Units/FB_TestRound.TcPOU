@@ -55,7 +55,7 @@ END_VAR
         <ST><![CDATA[TEST('testRoundLREALSuccess');
 
 // Act
-Actual := F_ROUNDLREAL(rValue, 2); 
+Actual := F_ROUND_LREAL(rValue, 2); 
 
 // Arrange
 Expected := 1000.22;
@@ -82,7 +82,7 @@ END_VAR
         <ST><![CDATA[TEST('testRoundLREALToHigh');
 
 // Act
-Actual := F_ROUNDLREAL(rValue, 2); 
+Actual := F_ROUND_LREAL(rValue, 2); 
 
 // Arrange
 Expected := 1000.23;
@@ -110,7 +110,7 @@ END_VAR
         <ST><![CDATA[TEST('testRoundLREALToHigh2');
 
 // Act
-Actual := F_ROUNDLREAL(rValue, 1); 
+Actual := F_ROUND_LREAL(rValue, 1); 
 
 // Arrange
 Expected := 1001.0;
@@ -164,7 +164,7 @@ END_VAR
         <ST><![CDATA[TEST('testRoundRealSuccess');
 
 // Act
-Actual := F_ROUNDREAL(rValue, 2); 
+Actual := F_ROUND_REAL(rValue, 2); 
 
 // Arrange
 Expected := 1000.22;
@@ -191,7 +191,7 @@ END_VAR
         <ST><![CDATA[TEST('testRoundRealToHigh');
 
 // Act
-Actual := F_ROUNDREAL(rValue, 2); 
+Actual := F_ROUND_REAL(rValue, 2); 
 
 // Arrange
 Expected := 1000.23;
@@ -219,7 +219,7 @@ END_VAR
         <ST><![CDATA[TEST('testRoundRealToHigh2');
 
 // Act
-Actual := F_ROUNDREAL(rValue, 1); 
+Actual := F_ROUND_REAL(rValue, 1); 
 
 // Arrange
 Expected := 1001.0;

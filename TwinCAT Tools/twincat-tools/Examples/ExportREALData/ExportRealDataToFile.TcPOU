@@ -34,7 +34,7 @@ fbSysTime();
 // use time stamp to file name
 IF bUseTimeStamp THEN
 	// get time stamp
-	timeStamp := F_GETTIMESTAMP(fbSysTime.systemTime, '_', '_');
+	timeStamp := F_GET_TIME_STAMP(fbSysTime.systemTime, '_', '_');
 	sFilePathPlusTimestamp := INSERT(sFilePath,CONCAT('_',timeStamp),FIND(sFilePath, '.txt') - 1);
 	sInputFilePath := sFilePathPlusTimestamp;
 ELSE
@@ -44,7 +44,7 @@ END_IF
 // round array data values
 IF bRoundREALDataValues THEN
 	FOR i := 0 TO Parameters.iArrayREALSize DO
-		arrREALData[i] := F_ROUNDREAL(arrREALData[i], iRoundingDecIndex);
+		arrREALData[i] := F_ROUND_REAL(arrREALData[i], iRoundingDecIndex);
 	END_FOR
 END_IF
 
@@ -57,19 +57,7 @@ fbExport(
 	bDone=> bExportDone);]]></ST>
     </Implementation>
     <LineIds Name="ExportRealDataToFile">
-      <LineId Id="40" Count="0" />
-      <LineId Id="37" Count="2" />
-      <LineId Id="21" Count="3" />
-      <LineId Id="56" Count="0" />
-      <LineId Id="25" Count="1" />
-      <LineId Id="17" Count="3" />
-      <LineId Id="47" Count="0" />
-      <LineId Id="9" Count="0" />
-      <LineId Id="48" Count="0" />
-      <LineId Id="41" Count="0" />
-      <LineId Id="52" Count="0" />
-      <LineId Id="51" Count="0" />
-      <LineId Id="61" Count="4" />
+      <LineId Id="117" Count="25" />
       <LineId Id="50" Count="0" />
     </LineIds>
   </POU>
