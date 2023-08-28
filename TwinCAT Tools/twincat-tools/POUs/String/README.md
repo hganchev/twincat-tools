@@ -34,5 +34,3 @@ FOR i := 0 TO Parameters.iSplitArraySize DO
 END_FOR
 ```
 This implementation iteratively splits the input string using the specified split character. It assigns each substring to the corresponding element in the F_STRINGSPLIT array. The splitting process continues until either the end of the input string is reached or the maximum number of substrings specified by Parameters.iSplitArraySize is reached.
-
-Note: The code provided is written in a pseudocode-like syntax. Please adapt it to the specific programming language you are using before incorporating it into your project.
