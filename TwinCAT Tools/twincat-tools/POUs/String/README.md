@@ -1,11 +1,11 @@
-### F_STRINGSPLIT Function
-This function takes a string sInput and a split character sSplitChar and splits the input string into an array of substrings. The resulting array, F_STRINGSPLIT, has a size of Parameters.iSplitArraySize.
+### F_STRING_SPLIT Function
+This function takes a string sInput and a split character sSplitChar and splits the input string into an array of substrings. The resulting array, F_STRING_SPLIT, has a size of Parameters.iSplitArraySize.
 
 ## Inputs
 sInput (STRING): The input string to be split. It has a maximum length of 255 characters.
 sSplitChar (STRING): The character used to split the input string. It should be a single character.
 ## Outputs
-F_STRINGSPLIT (ARRAY[0..Parameters.iSplitArraySize] OF STRING(255)): The array of substrings resulting from the split operation. Each substring has a maximum length of 255 characters.
+F_STRING_SPLIT (ARRAY[0..Parameters.iSplitArraySize] OF STRING(255)): The array of substrings resulting from the split operation. Each substring has a maximum length of 255 characters.
 Implementation
 The function implementation is as follows:
 
@@ -22,7 +22,7 @@ FOR i := 0 TO Parameters.iSplitArraySize DO
 	END_IF
 	
 	// Take the string value
-	F_STRINGSPLIT[i] := sSplit;
+	F_STRING_SPLIT[i] := sSplit;
 	
 	// Delete 
 	sCopy := DELETE(sCopy, iDeleteLen, 1);

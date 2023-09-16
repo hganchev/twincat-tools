@@ -1,11 +1,11 @@
 # Round Functions
 
-The `F_ROUNDREAL` function is a custom function in TwinCAT that allows you to round a real number to a specified number of decimal places.
+The `F_ROUND_REAL` function is a custom function in TwinCAT that allows you to round a real number to a specified number of decimal places.
 
 ## Function Signature
 
 ```pascal
-FUNCTION F_ROUNDREAL : REAL
+FUNCTION F_ROUND_REAL : REAL
 VAR_INPUT
     rValue      : REAL;  // Input Value
     iDecNumber  : INT;   // Numbers after decimal point
@@ -22,7 +22,7 @@ IF rLeftValue >= 0.5 THEN
 ELSE
 	rOutValue := TRUNC(rOutValue) / EXPT(10,iDecNumber);
 END_IF
-F_ROUNDREAL := rOutValue;
+F_ROUND_REAL := rOutValue;
 ```
 
 ## Input Parameters
@@ -30,7 +30,7 @@ F_ROUNDREAL := rOutValue;
 - iDecNumber (Input): The number of decimal places to round to.
 
 ## Return Value
-- F_ROUNDREAL returns a REAL value that represents the rounded result of the input number with the specified decimal places. It rounds to higher number if the lef value is bigger or equal than 0.5.
+- F_ROUND_REAL returns a REAL value that represents the rounded result of the input number with the specified decimal places. It rounds to higher number if the lef value is bigger or equal than 0.5.
 
 ## Usage Example
 
@@ -41,9 +41,9 @@ VAR
 END_VAR
 
 
-RoundedValue := F_ROUNDREAL(MyValue, 2);  // Round MyValue to 2 decimal places - Rounded value = 3.14
+RoundedValue := F_ROUND_REAL(MyValue, 2);  // Round MyValue to 2 decimal places - Rounded value = 3.14
 ```
 
-In this example, the MyValue variable represents the real number that you want to round. The F_ROUNDREAL function is then used to round MyValue to 2 decimal places. The result is stored in the RoundedValue variable.
+In this example, the MyValue variable represents the real number that you want to round. The F_ROUND_REAL function is then used to round MyValue to 2 decimal places. The result is stored in the RoundedValue variable.
 
 After executing the code, RoundedValue will contain the rounded value of MyValue with 2 decimal places.
