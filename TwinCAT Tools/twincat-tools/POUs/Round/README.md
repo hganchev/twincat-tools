@@ -47,5 +47,3 @@ RoundedValue := F_ROUNDREAL(MyValue, 2);  // Round MyValue to 2 decimal places -
 In this example, the MyValue variable represents the real number that you want to round. The F_ROUNDREAL function is then used to round MyValue to 2 decimal places. The result is stored in the RoundedValue variable.
 
 After executing the code, RoundedValue will contain the rounded value of MyValue with 2 decimal places.
-
-# Feel free to modify and format the documentation according to your specific needs.
