@@ -1,7 +1,41 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
   <POU Name="F_ROUND_LREAL" Id="{625e7ba7-48bd-4cac-b9d8-1117997efc5b}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION F_ROUND_LREAL : LREAL
+    <Declaration><![CDATA[(*
+:Info: See <https://github.com/hganchev/twincat-tools/tree/main/TwinCAT%20Tools/twincat-tools/POUs/Round/>
+:Author: hganchev <https://github.com/hganchev/>
+
+**Description:**
+The F_ROUND_LREAL function is a custom function in TwinCAT that allows you to round a real number to a 
+specified number of decimal places.
+
+**Input Parameters:**
+
+- rValue(Input): The lreal number that you want to round.
+
+- iDecNumber(Input): The number of decimal places to round to.
+
+**Return Value:**
+F_ROUND_LREAL returns a LREAL value that represents the rounded result of the input number with the specified decimal places.It rounds to higher number if the lef value is bigger or equal than 0.5.
+
+**Usage Example:**
+
+.. code::
+
+	VAR
+		MyValue : LREAL := 3.14159;
+		RoundedValue : LREAL;
+	END_VAR
+	
+	RoundedValue := F_ROUND_LREAL(MyValue, 2);
+
+In this example, the MyValue variable represents the real number that you want to round. 
+The F_ROUND_LREAL function is then used to round MyValue to 2 decimal places. 
+The result is stored in the RoundedValue variable.
+
+After executing the code, RoundedValue will contain the rounded value of MyValue with 2 decimal places.
+*)
+FUNCTION F_ROUND_LREAL : LREAL
 VAR_INPUT
 	rValue		: LREAL; // Input Value
 	iDecNumber	: INT; 	// Numbers after decimal point

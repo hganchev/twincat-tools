@@ -1,7 +1,44 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
   <POU Name="F_IN_BOUNDS_ARRAY_INT" Id="{e02df47f-0dea-4eec-9512-43a537103fc1}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION F_IN_BOUNDS_ARRAY_INT : BOOL
+    <Declaration><![CDATA[(*
+:Info: See <https://github.com/hganchev/twincat-tools/tree/main/TwinCAT%20Tools/twincat-tools/POUs/Range/>
+:Author: hganchev <https://github.com/hganchev/>
+
+**Description:**
+
+The F_IN_BOUNDS_ARRAY_INT function is a custom function in TwinCAT that checks if an index is within the bounds of an integer array.
+
+**Parameters:**
+
+- index (Input): The index to check whether it is within the bounds of the array. 
+- arrayIn (Input/Output): The integer array against which the index is checked.
+
+**Return Value:**
+
+F_IN_BOUNDS_ARRAY_INT returns a BOOL value. It is set to TRUE if the index is within the bounds of the array; otherwise, it is set to FALSE.
+
+**Usage Example:**
+
+.. code::
+
+	VAR
+		MyArray : ARRAY[1..5] OF INT := [10, 20, 30, 40, 50];
+		MyIndex : DINT := 3;
+		IsInBounds : BOOL;
+	END_VAR
+	
+	IsInBounds := F_IN_BOUNDS_ARRAY_INT(MyIndex, MyArray);
+	
+In this example, the MyArray variable represents an integer array with elements [10, 20, 30, 40, 50]. 
+The MyIndex variable contains the index that you want to check. 
+The F_IN_BOUNDS_ARRAY_INT function is then used to check whether MyIndex is within the bounds of MyArray. 
+The result is stored in the IsInBounds variable.
+
+After executing the code, IsInBounds will be set to TRUE since the value of MyIndex (3) is within the bounds of MyArray.
+*)
+
+FUNCTION F_IN_BOUNDS_ARRAY_INT : BOOL
 VAR_INPUT
 	index		: DINT;
 END_VAR
