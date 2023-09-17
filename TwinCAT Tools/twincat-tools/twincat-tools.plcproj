@@ -21,6 +21,7 @@
     <ProjectVersion>1.0.0.0</ProjectVersion>
     <DefaultNamespace>tc-tools</DefaultNamespace>
     <Author>hganchev</Author>
+    <DocFormat>reStructuredText</DocFormat>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Examples\ExportREALData\ExportRealDataToFile.TcPOU">
@@ -88,10 +89,6 @@
     <PlaceholderReference Include="Tc3_Module">
       <DefaultResolution>Tc3_Module, * (Beckhoff Automation GmbH)</DefaultResolution>
       <Namespace>Tc3_Module</Namespace>
-    </PlaceholderReference>
-    <PlaceholderReference Include="TcUnit">
-      <DefaultResolution>TcUnit, * (www.tcunit.org)</DefaultResolution>
-      <Namespace>TcUnit</Namespace>
     </PlaceholderReference>
   </ItemGroup>
   <ItemGroup>

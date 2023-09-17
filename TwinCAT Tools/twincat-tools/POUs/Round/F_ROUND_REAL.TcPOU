@@ -11,9 +11,9 @@ specified number of decimal places.
 
 **Input Parameters:**
 
-:rValue(Input): The real number that you want to round.
+- rValue(Input): The real number that you want to round.
 
-:iDecNumber(Input): The number of decimal places to round to.
+- iDecNumber(Input): The number of decimal places to round to.
 
 **Return Value:**
 F_ROUND_REAL returns a REAL value that represents the rounded result of the input number with the specified decimal places.It rounds to higher number if the lef value is bigger or equal than 0.5.
@@ -27,9 +27,11 @@ F_ROUND_REAL returns a REAL value that represents the rounded result of the inpu
 		RoundedValue : REAL;
 	END_VAR
 	
-	RoundedValue := F_ROUND_REAL(MyValue, 2);  // Round MyValue to 2 decimal places - Rounded value = 3.14 
+	RoundedValue := F_ROUND_REAL(MyValue, 2);
 
-In this example, the MyValue variable represents the real number that you want to round. The F_ROUND_REAL function is then used to round MyValue to 2 decimal places. The result is stored in the RoundedValue variable.
+In this example, the MyValue variable represents the real number that you want to round. 
+The F_ROUND_REAL function is then used to round MyValue to 2 decimal places. 
+The result is stored in the RoundedValue variable.
 
 After executing the code, RoundedValue will contain the rounded value of MyValue with 2 decimal places.
 *)
