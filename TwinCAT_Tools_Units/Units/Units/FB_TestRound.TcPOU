@@ -15,7 +15,15 @@ testRoundRealToHigh2();
 testRoundLREALFail();
 testRoundLREALSuccess();
 testRoundLREALToHigh();
-testRoundLREALToHigh2();]]></ST>
+testRoundLREALToHigh2();
+
+// Negative LREAL
+testRoundLREALNegative();
+testRoundLREALNegativeToHigh();
+
+// Negative REAL
+testRoundREALNegative();
+testRoundREALNegativeToHigh();]]></ST>
     </Implementation>
     <Method Name="testRoundLREALFail" Id="{0190ed15-4c58-455b-af97-ebeb1778d87e}">
       <Declaration><![CDATA[METHOD testRoundLREALFail
@@ -37,6 +45,62 @@ Expected := 1000.22;
 // Assert
 AssertFalse( Condition := Expected = Actual, 
 			 Message := 'testRoundLREALFail Failed to round LREAL');
+			 
+			 
+			 
+TEST_FINISHED();]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="testRoundLREALNegative" Id="{c521f4a9-4a25-4344-8227-e3dba5c3586a}">
+      <Declaration><![CDATA[METHOD testRoundLREALNegative
+VAR
+	rValue 		: LREAL := -1000.22;
+	Actual		: LREAL;
+	Expected  	: LREAL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[TEST('testRoundLREALNegative');
+
+// Act
+Actual := F_ROUND_LREAL(rValue, 1); 
+
+// Arrange
+Expected := -1000.2;
+
+// Assert
+AssertEquals_LREAL( Expected :=  Expected, 
+				Actual := Actual,
+				Delta := 0.00,
+			 	Message := 'testRoundLREALNegative Failed to round LREAL Negative');
+			 
+			 
+			 
+TEST_FINISHED();]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="testRoundLREALNegativeToHigh" Id="{ffdda655-afb3-4693-823b-af5ceaf7328c}">
+      <Declaration><![CDATA[METHOD testRoundLREALNegativeToHigh
+VAR
+	rValue 		: LREAL := -1000.556;
+	Actual		: LREAL;
+	Expected  	: LREAL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[TEST('testRoundLREALNegativeToHigh');
+
+// Act
+Actual := F_ROUND_LREAL(rValue, 2); 
+
+// Arrange
+Expected := -1000.56;
+
+// Assert
+AssertEquals_LREAL( Expected :=  Expected, 
+				Actual := Actual,
+				Delta := 0.00,
+			 	Message := 'testRoundLREALNegativeToHigh Failed to round LREAL Negative');
 			 
 			 
 			 
@@ -152,6 +216,62 @@ AssertFalse( Condition := Expected = Actual,
 TEST_FINISHED();]]></ST>
       </Implementation>
     </Method>
+    <Method Name="testRoundRealNegative" Id="{2b80e827-f24e-4139-977f-23938de9fd56}">
+      <Declaration><![CDATA[METHOD testRoundRealNegative
+VAR
+	rValue 		: REAL := -1000.22;
+	Actual		: REAL;
+	Expected  	: REAL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[TEST('testRoundRealNegative');
+
+// Act
+Actual := F_ROUND_REAL(rValue, 1); 
+
+// Arrange
+Expected := -1000.2;
+
+// Assert
+AssertEquals_REAL( Expected :=  Expected, 
+				Actual := Actual,
+				Delta := 0.00,
+			 	Message := 'testRoundRealNegative Failed to round REAL Negative');
+			 
+			 
+			 
+TEST_FINISHED();]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="testRoundRealNegativeToHigh" Id="{f2a2fc5e-a49d-48f9-a8a4-48f4ba5586ee}">
+      <Declaration><![CDATA[METHOD testRoundRealNegativeToHigh
+VAR
+	rValue 		: REAL := -1000.556;
+	Actual		: REAL;
+	Expected  	: REAL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[TEST('testRoundRealNegativeToHigh');
+
+// Act
+Actual := F_ROUND_REAL(rValue, 2); 
+
+// Arrange
+Expected := -1000.56;
+
+// Assert
+AssertEquals_REAL( Expected :=  Expected, 
+				Actual := Actual,
+				Delta := 0.00,
+			 	Message := 'testRoundRealNegativeToHigh Failed to round REAL Negative');
+			 
+			 
+			 
+TEST_FINISHED();]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="testRoundRealSuccess" Id="{348be370-bcb0-42a0-96a8-49bab6374bd8}">
       <Declaration><![CDATA[METHOD testRoundRealSuccess
 VAR
@@ -241,9 +361,25 @@ TEST_FINISHED();]]></ST>
       <LineId Id="32" Count="3" />
       <LineId Id="14" Count="0" />
       <LineId Id="37" Count="0" />
+      <LineId Id="42" Count="0" />
+      <LineId Id="41" Count="0" />
+      <LineId Id="40" Count="0" />
+      <LineId Id="43" Count="0" />
+      <LineId Id="45" Count="0" />
+      <LineId Id="44" Count="0" />
+      <LineId Id="47" Count="0" />
+      <LineId Id="46" Count="0" />
     </LineIds>
     <LineIds Name="FB_TestRound.testRoundLREALFail">
       <LineId Id="9" Count="13" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_TestRound.testRoundLREALNegative">
+      <LineId Id="9" Count="15" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_TestRound.testRoundLREALNegativeToHigh">
+      <LineId Id="9" Count="15" />
       <LineId Id="5" Count="0" />
     </LineIds>
     <LineIds Name="FB_TestRound.testRoundLREALSuccess">
@@ -261,6 +397,16 @@ TEST_FINISHED();]]></ST>
     <LineIds Name="FB_TestRound.testRoundRealFail">
       <LineId Id="9" Count="9" />
       <LineId Id="20" Count="3" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_TestRound.testRoundRealNegative">
+      <LineId Id="12" Count="15" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_TestRound.testRoundRealNegativeToHigh">
+      <LineId Id="6" Count="9" />
+      <LineId Id="23" Count="1" />
+      <LineId Id="16" Count="3" />
       <LineId Id="5" Count="0" />
     </LineIds>
     <LineIds Name="FB_TestRound.testRoundRealSuccess">
