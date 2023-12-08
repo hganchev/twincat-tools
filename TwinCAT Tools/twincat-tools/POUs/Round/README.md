@@ -19,6 +19,8 @@ rOutValue := rValue * EXPT(10,iDecNumber);
 rLeftValue := rOutValue - TRUNC(rOutValue);
 IF rLeftValue >= 0.5 THEN
 	rOutValue := TRUNC(rOutValue + 1) / EXPT(10,iDecNumber);
+ElSIF rLeftValue <= -0.5 THEN
+	rOutValue := TRUNC(rOutValue - 1) / EXPT(10,iDecNumber);
 ELSE
 	rOutValue := TRUNC(rOutValue) / EXPT(10,iDecNumber);
 END_IF
