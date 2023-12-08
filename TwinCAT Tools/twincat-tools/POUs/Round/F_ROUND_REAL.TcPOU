@@ -50,6 +50,8 @@ END_VAR
 rLeftValue := rOutValue - TRUNC(rOutValue);
 IF rLeftValue >= 0.5 THEN
 	rOutValue := TRUNC(rOutValue + 1) / EXPT(10,iDecNumber);
+ELSIF rLeftValue <= -0.5 THEN
+	rOutValue := TRUNC(rOutValue - 1) / EXPT(10,iDecNumber);
 ELSE
 	rOutValue := TRUNC(rOutValue) / EXPT(10,iDecNumber);
 END_IF
@@ -59,6 +61,8 @@ F_ROUND_REAL := rOutValue;]]></ST>
       <LineId Id="7" Count="0" />
       <LineId Id="22" Count="1" />
       <LineId Id="12" Count="0" />
+      <LineId Id="71" Count="0" />
+      <LineId Id="70" Count="0" />
       <LineId Id="24" Count="2" />
       <LineId Id="10" Count="0" />
     </LineIds>
