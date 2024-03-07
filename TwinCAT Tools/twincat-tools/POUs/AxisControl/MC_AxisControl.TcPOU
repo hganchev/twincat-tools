@@ -12,15 +12,17 @@ END_VAR
 VAR
 	// Controls
 	bEnable				: BOOL;
+	bHome				: BOOL;
 	bReset				: BOOL;
 	bMove				: BOOL;
+	bStop				: BOOL;
 	                	
 	// Statuses     	
 	bEnabled			: BOOL;
 	bReferenced			: BOOL;
 	bError				: BOOL;
 	nErrorID			: UDINT;
-	bMoveDone			: BOOL;
+	bMoving				: BOOL;
 	bInPosition			: BOOL;
 	nActualPosition		: LREAL;
 	nActualVelocity		: LREAL;
@@ -29,20 +31,18 @@ VAR
 	nTargetPosition		: LREAL;
 	nTargetVelocity		: LREAL;
 	nTargetAcceleration	: LREAL;
+	stHomingOptions		: ST_HomingOptions;
 	
 	fbEnable			: MC_Power;
+	fbHome				: MC_Home;
 	fbMove				: MC_MoveAbsolute;
 	fbReset				: MC_Reset;
 	fbActualPosition	: MC_ReadActualPosition;
 	fbActualVelocity	: MC_ReadActualVelocity;
-	
-	trigErrorSet		: R_TRIG;
-	trigErrorReSet		: R_TRIG;
-	trigMoveDone		: R_TRIG;
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[// Power On
+      <ST><![CDATA[// Power On - power on/off the axis
 fbEnable(
 	Axis:= axisRef, 
 	Enable:= bEnable, 
@@ -57,7 +57,26 @@ fbEnable(
 	Error=> , 
 	ErrorID=> );
 	
-// Reset
+// Home - Reference the axis
+stHomingOptions.ReferenceMode := E_EncoderReferenceMode.ENCODERREFERENCEMODE_DEFAULT;
+stHomingOptions.SearchDirection := MC_Direction.MC_Negative_Direction;
+stHomingOptions.SearchVelocity := 10;
+fbHome(
+	Axis:= axisRef, 
+	Execute:= bHome AND bEnabled, 
+	Position:= 0, 
+	HomingMode:= MC_HomingMode.MC_DefaultHoming, 
+	BufferMode:= , 
+	Options:= stHomingOptions, 
+	bCalibrationCam:= , 
+	Done=> , 
+	Busy=> , 
+	Active=> , 
+	CommandAborted=> , 
+	Error=> , 
+	ErrorID=> );
+	
+// Reset - reset error of axis
 fbReset(
 	Axis:= axisRef, 
 	Execute:= bReset, 
@@ -66,7 +85,7 @@ fbReset(
 	Error=> , 
 	ErrorID=> );
 	
-// Move Absolute
+// Move Absolute - move to absolute position
 fbMove(
 	Axis:= axisRef, 
 	Execute:= bMove AND bEnabled, 
@@ -77,7 +96,7 @@ fbMove(
 	Jerk:= , 
 	BufferMode:= , 
 	Options:= , 
-	Done=> bMoveDone, 
+	Done=> , 
 	Busy=> , 
 	Active=> , 
 	CommandAborted=> , 
@@ -104,29 +123,17 @@ fbActualVelocity(
 	ErrorID=> , 
 	ActualVelocity=> nActualVelocity);
 	
-// In Position	
-trigMoveDone(CLK := bMoveDone);
-IF trigMoveDone.Q 
-AND ABS(nTargetPosition - nActualPosition) < 0.1 
-THEN
-	bMove := FALSE;
-	bInPosition := TRUE;
-ELSIF ABS(nTargetPosition - nActualPosition) > 0.1 THEN
-	bInPosition := FALSE;
-END_IF
+// Statuses
+axisRef.ReadStatus();
+bReferenced := axisRef.Status.Homed;
+bMoving := axisRef.Status.Moving;
+bInPosition := axisRef.Status.InTargetPosition AND ABS(nTargetPosition - nActualPosition) < 0.1;
+bError := axisRef.Status.Error;
+nErrorID := axisRef.Status.ErrorID;
 
-// Error Detection
-trigErrorSet(CLK:= fbEnable.Error OR fbReset.Error OR fbMove.Error OR fbActualPosition.Error OR fbActualVelocity.Error, Q=> );
-trigErrorReSet(CLK:= NOT fbEnable.Error AND NOT fbReset.Error AND NOT fbMove.Error AND NOT fbActualPosition.Error AND NOT fbActualVelocity.Error, Q=> );
-IF trigErrorSet.Q THEN
-	bError := TRUE;
-	bEnable := FALSE;
-	nErrorID := fbEnable.ErrorID + fbReset.ErrorID + fbMove.ErrorID + fbActualPosition.ErrorID + fbActualVelocity.ErrorID;
-END_IF
-IF trigErrorReSet.Q THEN
-	bError := FALSE;
-	bReset := FALSE;
-	nErrorID := 0;
+// Reset Move
+IF bInPosition AND NOT bMoving THEN
+	bMove := FALSE;
 END_IF
 	
 	
@@ -136,6 +143,11 @@ END_IF
       <LineId Id="127" Count="0" />
       <LineId Id="36" Count="11" />
       <LineId Id="9" Count="0" />
+      <LineId Id="188" Count="0" />
+      <LineId Id="206" Count="0" />
+      <LineId Id="233" Count="2" />
+      <LineId Id="190" Count="12" />
+      <LineId Id="189" Count="0" />
       <LineId Id="102" Count="0" />
       <LineId Id="126" Count="0" />
       <LineId Id="119" Count="5" />
@@ -152,13 +164,16 @@ END_IF
       <LineId Id="91" Count="0" />
       <LineId Id="93" Count="6" />
       <LineId Id="92" Count="0" />
-      <LineId Id="162" Count="0" />
-      <LineId Id="177" Count="8" />
-      <LineId Id="176" Count="0" />
-      <LineId Id="186" Count="0" />
-      <LineId Id="175" Count="0" />
-      <LineId Id="164" Count="10" />
+      <LineId Id="208" Count="1" />
+      <LineId Id="216" Count="0" />
+      <LineId Id="212" Count="0" />
+      <LineId Id="221" Count="0" />
+      <LineId Id="217" Count="0" />
       <LineId Id="163" Count="0" />
+      <LineId Id="219" Count="0" />
+      <LineId Id="231" Count="0" />
+      <LineId Id="228" Count="2" />
+      <LineId Id="227" Count="0" />
       <LineId Id="52" Count="2" />
     </LineIds>
   </POU>
