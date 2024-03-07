@@ -42,20 +42,7 @@ VAR
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[trigErrorSet(CLK:= fbEnable.Error OR fbReset.Error OR fbMove.Error OR fbActualPosition.Error OR fbActualVelocity.Error, Q=> );
-trigErrorReSet(CLK:= NOT fbEnable.Error AND NOT fbReset.Error AND NOT fbMove.Error AND NOT fbActualPosition.Error AND NOT fbActualVelocity.Error, Q=> );
-IF trigErrorSet.Q THEN
-	bError := TRUE;
-	bEnable := FALSE;
-	nErrorID := fbEnable.ErrorID + fbReset.ErrorID + fbMove.ErrorID + fbActualPosition.ErrorID + fbActualVelocity.ErrorID;
-END_IF
-IF trigErrorReSet.Q THEN
-	bError := FALSE;
-	bReset := FALSE;
-	nErrorID := 0;
-END_IF
-
-// Power On
+      <ST><![CDATA[// Power On
 fbEnable(
 	Axis:= axisRef, 
 	Enable:= bEnable, 
@@ -96,17 +83,6 @@ fbMove(
 	CommandAborted=> , 
 	Error=> , 
 	ErrorID=> );
-
-// In Position	
-trigMoveDone(CLK := bMoveDone);
-IF trigMoveDone.Q 
-AND ABS(nTargetPosition - nActualPosition) < 0.1 
-THEN
-	bMove := FALSE;
-	bInPosition := TRUE;
-ELSIF ABS(nTargetPosition - nActualPosition) > 0.1 THEN
-	bInPosition := FALSE;
-END_IF
 	
 // Status Actual Position
 fbActualPosition(
@@ -128,21 +104,35 @@ fbActualVelocity(
 	ErrorID=> , 
 	ActualVelocity=> nActualVelocity);
 	
+// In Position	
+trigMoveDone(CLK := bMoveDone);
+IF trigMoveDone.Q 
+AND ABS(nTargetPosition - nActualPosition) < 0.1 
+THEN
+	bMove := FALSE;
+	bInPosition := TRUE;
+ELSIF ABS(nTargetPosition - nActualPosition) > 0.1 THEN
+	bInPosition := FALSE;
+END_IF
+
+// Error Detection
+trigErrorSet(CLK:= fbEnable.Error OR fbReset.Error OR fbMove.Error OR fbActualPosition.Error OR fbActualVelocity.Error, Q=> );
+trigErrorReSet(CLK:= NOT fbEnable.Error AND NOT fbReset.Error AND NOT fbMove.Error AND NOT fbActualPosition.Error AND NOT fbActualVelocity.Error, Q=> );
+IF trigErrorSet.Q THEN
+	bError := TRUE;
+	bEnable := FALSE;
+	nErrorID := fbEnable.ErrorID + fbReset.ErrorID + fbMove.ErrorID + fbActualPosition.ErrorID + fbActualVelocity.ErrorID;
+END_IF
+IF trigErrorReSet.Q THEN
+	bError := FALSE;
+	bReset := FALSE;
+	nErrorID := 0;
+END_IF
+	
 	
 ]]></ST>
     </Implementation>
     <LineIds Name="MC_AxisControl">
-      <LineId Id="141" Count="0" />
-      <LineId Id="147" Count="0" />
-      <LineId Id="142" Count="1" />
-      <LineId Id="154" Count="0" />
-      <LineId Id="152" Count="0" />
-      <LineId Id="144" Count="0" />
-      <LineId Id="149" Count="1" />
-      <LineId Id="155" Count="0" />
-      <LineId Id="153" Count="0" />
-      <LineId Id="148" Count="0" />
-      <LineId Id="145" Count="0" />
       <LineId Id="127" Count="0" />
       <LineId Id="36" Count="11" />
       <LineId Id="9" Count="0" />
@@ -154,15 +144,6 @@ fbActualVelocity(
       <LineId Id="128" Count="0" />
       <LineId Id="57" Count="14" />
       <LineId Id="56" Count="0" />
-      <LineId Id="138" Count="0" />
-      <LineId Id="131" Count="0" />
-      <LineId Id="157" Count="0" />
-      <LineId Id="132" Count="0" />
-      <LineId Id="160" Count="1" />
-      <LineId Id="159" Count="0" />
-      <LineId Id="133" Count="0" />
-      <LineId Id="135" Count="1" />
-      <LineId Id="134" Count="0" />
       <LineId Id="81" Count="0" />
       <LineId Id="129" Count="0" />
       <LineId Id="83" Count="6" />
@@ -171,6 +152,13 @@ fbActualVelocity(
       <LineId Id="91" Count="0" />
       <LineId Id="93" Count="6" />
       <LineId Id="92" Count="0" />
+      <LineId Id="162" Count="0" />
+      <LineId Id="177" Count="8" />
+      <LineId Id="176" Count="0" />
+      <LineId Id="186" Count="0" />
+      <LineId Id="175" Count="0" />
+      <LineId Id="164" Count="10" />
+      <LineId Id="163" Count="0" />
       <LineId Id="52" Count="2" />
     </LineIds>
   </POU>
