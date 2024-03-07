@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<TcLicenseInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2011/11/TcLicenseInfo">
+	<LicenseInfo>
+		<SystemId>{7B9F532D-C217-ED8D-8449-1CB8CE1054C8}</SystemId>
+		<IssueTime>2024-03-05T19:54:00</IssueTime>
+		<ExpireTime>2024-03-13T00:00:00</ExpireTime>
+		<LicenseKey>c76187d8941ae017ba935059914513332e11378ecf00cc8bf987f4ae6516f7c2f71200cd4bc7a0af324957498741f09b87ee0e0801c915afdd4a4950bd37722c62a272820e909bfd569b9dff2884a89ae807b45bbc5c50e7a6b1fded0d6e6d3e299305000cdc36a6ac3918e3107508918f07c2d27a5989a5b04e99467a4deee3c648f1bf7d9b4e7289cb487c300102a67a8a7010fda2e08022397eaacc55fb8807db1357b4d6d61ec760fdd15eab5dcfda40b56ee870999ae09389a5986203e267d6d5037140e1aea577fd201621cc9a960b6c116dd216d8862543c29573d22bbbe6062f8cdfa422e9d4a5722b4f6ddcdda5011d3787ace8ed817d49b00b1bfd</LicenseKey>
+		<License>
+			<LicenseId>{94C91BCC-DC1F-4EBC-AEFD-2DC25DF4708B}</LicenseId>
+			<Name>TC3 EtherCAT Simulation</Name>
+			<OrderNo>TE1111</OrderNo>
+		</License>
+		<License>
+			<LicenseId>{4C256767-E6E6-4AF5-BD68-9F7ABAD0C200}</LicenseId>
+			<Name>TC3 ADS</Name>
+			<OrderNo>TC1000</OrderNo>
+		</License>
+		<License>
+			<LicenseId>{A19036CF-A53B-4E3A-99FF-023EF5C4798B}</LicenseId>
+			<Name>TC3 NC PTP Axis</Name>
+			<Instances>10</Instances>
+		</License>
+		<License>
+			<LicenseId>{66689887-CCBD-452C-AC9A-039D997C6E66}</LicenseId>
+			<Name>TC3 PLC</Name>
+			<OrderNo>TC1200</OrderNo>
+		</License>
+		<License>
+			<LicenseId>{520DE751-9DB6-47CB-8240-BD5C466E7E64}</LicenseId>
+			<Name>TC3 NC PTP</Name>
+			<OrderNo>TF5000</OrderNo>
+		</License>
+		<License>
+			<LicenseId>{3FF18E97-7754-401B-93FB-70544DE28A13}</LicenseId>
+			<Name>TC3 IO</Name>
+			<OrderNo>TC1100</OrderNo>
+		</License>
+	</LicenseInfo>
+</TcLicenseInfo>
