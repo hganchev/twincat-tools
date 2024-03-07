@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Refactors>
+  <Renames>
+    <RenamedType>
+      <Type guid="84cc6ef7-9ee1-4c68-b55b-f1fda5149a92">MC_CONTROL</Type>
+      <From>MC_Control</From>
+      <To>MC_AxisControl</To>
+    </RenamedType>
+  </Renames>
+</Refactors>

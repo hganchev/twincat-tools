@@ -24,9 +24,6 @@
     <DocFormat>reStructuredText</DocFormat>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Examples\ExportREALData\ExportRealDataToFile.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="GVLs\Parameters.TcGVL">
       <SubType>Code</SubType>
       <LinkAlways>true</LinkAlways>
@@ -35,6 +32,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\Export\ExportArrayREALDataToTextFile.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\AxisControl\MC_AxisControl.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\Range\F_IN_BOUNDS_ARRAY_INT.TcPOU">
@@ -61,10 +61,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DUTs" />
-    <Folder Include="Examples\ExportREALData" />
     <Folder Include="GVLs" />
-    <Folder Include="Examples" />
     <Folder Include="POUs\Export" />
+    <Folder Include="POUs\AxisControl" />
     <Folder Include="POUs\Range" />
     <Folder Include="POUs\String" />
     <Folder Include="POUs\TimeStamp" />
@@ -74,6 +73,10 @@
     <Folder Include="POUs" />
   </ItemGroup>
   <ItemGroup>
+    <PlaceholderReference Include="Tc2_MC2">
+      <DefaultResolution>Tc2_MC2, * (Beckhoff Automation GmbH)</DefaultResolution>
+      <Namespace>Tc2_MC2</Namespace>
+    </PlaceholderReference>
     <PlaceholderReference Include="Tc2_Standard">
       <DefaultResolution>Tc2_Standard, * (Beckhoff Automation GmbH)</DefaultResolution>
       <Namespace>Tc2_Standard</Namespace>

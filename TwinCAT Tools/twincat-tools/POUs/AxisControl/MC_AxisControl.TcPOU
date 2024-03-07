@@ -1,0 +1,177 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <POU Name="MC_AxisControl" Id="{84cc6ef7-9ee1-4c68-b55b-f1fda5149a92}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK MC_AxisControl
+VAR_INPUT	
+END_VAR
+VAR_IN_OUT
+	axisRef			: AXIS_REF;
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	// Controls
+	bEnable				: BOOL;
+	bReset				: BOOL;
+	bMove				: BOOL;
+	                	
+	// Statuses     	
+	bEnabled			: BOOL;
+	bReferenced			: BOOL;
+	bError				: BOOL;
+	nErrorID			: UDINT;
+	bMoveDone			: BOOL;
+	bInPosition			: BOOL;
+	nActualPosition		: LREAL;
+	nActualVelocity		: LREAL;
+	
+	// Settings
+	nTargetPosition		: LREAL;
+	nTargetVelocity		: LREAL;
+	nTargetAcceleration	: LREAL;
+	
+	fbEnable			: MC_Power;
+	fbMove				: MC_MoveAbsolute;
+	fbReset				: MC_Reset;
+	fbActualPosition	: MC_ReadActualPosition;
+	fbActualVelocity	: MC_ReadActualVelocity;
+	
+	trigErrorSet		: R_TRIG;
+	trigErrorReSet		: R_TRIG;
+	trigMoveDone		: R_TRIG;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[trigErrorSet(CLK:= fbEnable.Error OR fbReset.Error OR fbMove.Error OR fbActualPosition.Error OR fbActualVelocity.Error, Q=> );
+trigErrorReSet(CLK:= NOT fbEnable.Error AND NOT fbReset.Error AND NOT fbMove.Error AND NOT fbActualPosition.Error AND NOT fbActualVelocity.Error, Q=> );
+IF trigErrorSet.Q THEN
+	bError := TRUE;
+	bEnable := FALSE;
+	nErrorID := fbEnable.ErrorID + fbReset.ErrorID + fbMove.ErrorID + fbActualPosition.ErrorID + fbActualVelocity.ErrorID;
+END_IF
+IF trigErrorReSet.Q THEN
+	bError := FALSE;
+	bReset := FALSE;
+	nErrorID := 0;
+END_IF
+
+// Power On
+fbEnable(
+	Axis:= axisRef, 
+	Enable:= bEnable, 
+	Enable_Positive:= bEnable, 
+	Enable_Negative:= bEnable, 
+	Override:= , 
+	BufferMode:= , 
+	Options:= , 
+	Status=> bEnabled, 
+	Busy=> , 
+	Active=> , 
+	Error=> , 
+	ErrorID=> );
+	
+// Reset
+fbReset(
+	Axis:= axisRef, 
+	Execute:= bReset, 
+	Done=> , 
+	Busy=> , 
+	Error=> , 
+	ErrorID=> );
+	
+// Move Absolute
+fbMove(
+	Axis:= axisRef, 
+	Execute:= bMove AND bEnabled, 
+	Position:= nTargetPosition, 
+	Velocity:= nTargetVelocity, 
+	Acceleration:= nTargetAcceleration, 
+	Deceleration:= nTargetAcceleration, 
+	Jerk:= , 
+	BufferMode:= , 
+	Options:= , 
+	Done=> bMoveDone, 
+	Busy=> , 
+	Active=> , 
+	CommandAborted=> , 
+	Error=> , 
+	ErrorID=> );
+
+// In Position	
+trigMoveDone(CLK := bMoveDone);
+IF trigMoveDone.Q 
+AND ABS(nTargetPosition - nActualPosition) < 0.1 
+THEN
+	bMove := FALSE;
+	bInPosition := TRUE;
+ELSIF ABS(nTargetPosition - nActualPosition) > 0.1 THEN
+	bInPosition := FALSE;
+END_IF
+	
+// Status Actual Position
+fbActualPosition(
+	Axis:= axisRef, 
+	Enable:= TRUE, 
+	Valid=> , 
+	Busy=> , 
+	Error=> , 
+	ErrorID=> , 
+	Position=> nActualPosition);
+
+// Status Actual Velocity	
+fbActualVelocity(
+	Axis:= axisRef, 
+	Enable:= TRUE, 
+	Valid=> , 
+	Busy=> , 
+	Error=> , 
+	ErrorID=> , 
+	ActualVelocity=> nActualVelocity);
+	
+	
+]]></ST>
+    </Implementation>
+    <LineIds Name="MC_AxisControl">
+      <LineId Id="141" Count="0" />
+      <LineId Id="147" Count="0" />
+      <LineId Id="142" Count="1" />
+      <LineId Id="154" Count="0" />
+      <LineId Id="152" Count="0" />
+      <LineId Id="144" Count="0" />
+      <LineId Id="149" Count="1" />
+      <LineId Id="155" Count="0" />
+      <LineId Id="153" Count="0" />
+      <LineId Id="148" Count="0" />
+      <LineId Id="145" Count="0" />
+      <LineId Id="127" Count="0" />
+      <LineId Id="36" Count="11" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="102" Count="0" />
+      <LineId Id="126" Count="0" />
+      <LineId Id="119" Count="5" />
+      <LineId Id="103" Count="0" />
+      <LineId Id="55" Count="0" />
+      <LineId Id="128" Count="0" />
+      <LineId Id="57" Count="14" />
+      <LineId Id="56" Count="0" />
+      <LineId Id="138" Count="0" />
+      <LineId Id="131" Count="0" />
+      <LineId Id="157" Count="0" />
+      <LineId Id="132" Count="0" />
+      <LineId Id="160" Count="1" />
+      <LineId Id="159" Count="0" />
+      <LineId Id="133" Count="0" />
+      <LineId Id="135" Count="1" />
+      <LineId Id="134" Count="0" />
+      <LineId Id="81" Count="0" />
+      <LineId Id="129" Count="0" />
+      <LineId Id="83" Count="6" />
+      <LineId Id="82" Count="0" />
+      <LineId Id="130" Count="0" />
+      <LineId Id="91" Count="0" />
+      <LineId Id="93" Count="6" />
+      <LineId Id="92" Count="0" />
+      <LineId Id="52" Count="2" />
+    </LineIds>
+  </POU>
+</TcPlcObject>
