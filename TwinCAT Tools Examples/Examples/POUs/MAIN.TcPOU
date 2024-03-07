@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <POU Name="MAIN" Id="{7f1c0017-b14e-4b9f-8e23-d981db59398c}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM MAIN
+VAR
+	axisRef				: AXIS_REF;
+	fbAxisControl		: MC_AxisControl;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[fbAxisControl(axisRef:= axisRef);]]></ST>
+    </Implementation>
+    <LineIds Name="MAIN">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>
