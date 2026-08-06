@@ -13,7 +13,7 @@ specified number of decimal places.
 
 - rValue(Input): The lreal number that you want to round.
 
-- iDecNumber(Input): The number of decimal places to round to.
+- iDecimalPlaces(Input): The number of decimal places to round to.
 
 **Return Value:**
 F_ROUND_LREAL returns a LREAL value that represents the rounded result of the input number with the specified decimal places.It rounds to higher number if the lef value is bigger or equal than 0.5.
@@ -37,25 +37,26 @@ After executing the code, RoundedValue will contain the rounded value of MyValue
 *)
 FUNCTION F_ROUND_LREAL : LREAL
 VAR_INPUT
-	rValue		: LREAL; // Input Value
-	iDecNumber	: INT; 	// Numbers after decimal point
+	rValue			: LREAL; // Input Value
+	iDecimalPlaces	: INT; 	// Numbers after decimal point
 END_VAR
 VAR
-	rOutValue	: LREAL;
-	rLeftValue	: LREAL;
+	rOutValue		: LREAL;
+	rLeftValue		: LREAL;
 END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[rOutValue := rValue * EXPT(10,iDecNumber);
 rLeftValue := rOutValue - TRUNC(rOutValue);
+rOutValue := DINT_TO_LREAL(TRUNC(rOutValue));
+
 IF rLeftValue >= 0.5 THEN
-	rOutValue := TRUNC(rOutValue + 1) / EXPT(10,iDecNumber);
+	rOutValue := rOutValue + 1;
 ELSIF rLeftValue <= -0.5 THEN
-	rOutValue := TRUNC(rOutValue - 1) / EXPT(10,iDecNumber);
-ELSE
-	rOutValue := TRUNC(rOutValue) / EXPT(10,iDecNumber);
+	rOutValue := rOutValue - 1;
 END_IF
-F_ROUND_LREAL := rOutValue;]]></ST>
+
+F_ROUND_LREAL := rOutValue / EXPT(10, iDecimalPlaces);]]></ST>
     </Implementation>
     <LineIds Name="F_ROUND_LREAL">
       <LineId Id="45" Count="3" />
