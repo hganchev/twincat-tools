@@ -7,29 +7,30 @@ The `F_ROUND_REAL` function is a custom function in TwinCAT that allows you to r
 ```pascal
 FUNCTION F_ROUND_REAL : REAL
 VAR_INPUT
-    rValue      : REAL;  // Input Value
-    iDecNumber  : INT;   // Numbers after decimal point
+    rValue      	: REAL;  // Input Value
+    iDecimalPlaces  : INT;   // Numbers after decimal point
 END_VAR
 VAR
-    rOutValue   : REAL;
-    rLeftValue	: REAL;
+    rOutValue   	: REAL;
+    rLeftValue		: REAL;
 END_VAR
 
-rOutValue := rValue * EXPT(10,iDecNumber);
+rOutValue := rValue * EXPT(10,iDecimalPlaces);
 rLeftValue := rOutValue - TRUNC(rOutValue);
+rOutValue := DINT_TO_REAL(TRUNC(rOutValue));
+
 IF rLeftValue >= 0.5 THEN
-	rOutValue := TRUNC(rOutValue + 1) / EXPT(10,iDecNumber);
+	rOutValue := rOutValue + 1;
 ElSIF rLeftValue <= -0.5 THEN
-	rOutValue := TRUNC(rOutValue - 1) / EXPT(10,iDecNumber);
-ELSE
-	rOutValue := TRUNC(rOutValue) / EXPT(10,iDecNumber);
+	rOutValue := rOutValue - 1;
 END_IF
-F_ROUND_REAL := rOutValue;
+
+F_ROUND_REAL := rOutValue / EXPT(10, iDecimalPlaces);
 ```
 
 ## Input Parameters
 - rValue (Input): The real number that you want to round.
-- iDecNumber (Input): The number of decimal places to round to.
+- iDecimalPlaces (Input): The number of decimal places to round to.
 
 ## Return Value
 - F_ROUND_REAL returns a REAL value that represents the rounded result of the input number with the specified decimal places. It rounds to higher number if the lef value is bigger or equal than 0.5.
