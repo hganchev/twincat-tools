@@ -46,7 +46,7 @@ VAR
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[rOutValue := rValue * EXPT(10,iDecNumber);
+      <ST><![CDATA[rOutValue := rValue * EXPT(10,iDecimalPlaces);
 rLeftValue := rOutValue - TRUNC(rOutValue);
 rOutValue := DINT_TO_LREAL(TRUNC(rOutValue));
 
